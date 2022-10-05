@@ -1,0 +1,80 @@
+@import 'vars/colors';
+@import url('https://fonts.googleapis.com/css?family=Bebas Neue:wght@200;300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Bebas Neue', sans-serif;
+  scroll-behavior: smooth;
+}
+
+.app {
+  background-color: $black;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+.nav-search {
+  & .ant-input {
+    border-radius: 8px;
+    padding-top: 2px;
+    border: none;
+    color: white;
+    height: 40px;
+    padding-left: 16px !important;
+
+    &::placeholder {
+      color: #A0A3BD;
+    }
+
+    &:focus {
+      border-radius: 100px;
+      border: 1px solid white !important;
+      background: white !important;
+      color: black;
+    }
+    &:focus::-webkit-input-placeholder {
+      color: black;
+    }
+  }
+  & .ant-input-prefix {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+
+.ant-layout-header {
+  &.header {
+    @apply fixed w-full left-0 top-0 p-5 h-24;
+    background-color: $black;
+    z-index: 99;
+    transition: height 0.3s ease, background-color 0.3s ease;
+  }
+
+  .header {
+    &--container {
+      @apply block lg:flex items-center px-6 py-4 justify-between;
+      border-radius: 12px;
+    }
+  }
+}
+
+
+.layout-content {
+  & .container {
+    max-width: 100% !important;
+  }
+}
+
+
+.search {
+  .ant-select-selection {
+    background: #EFF0F7;
+    border-radius: 100px;
+  }
+}
+
+
