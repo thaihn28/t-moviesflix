@@ -7,8 +7,10 @@
 </template>
 
 <script>
+import BasicLayout from "@/components/BasicLayout";
 export default {
-  name: "DefaultLayout"
+  name: "DefaultLayout",
+  components: {BasicLayout}
 }
 </script>
 

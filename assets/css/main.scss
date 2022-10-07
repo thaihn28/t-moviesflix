@@ -1,20 +1,53 @@
 @import 'vars/colors';
+@import "vars/font";
 @import url('https://fonts.googleapis.com/css?family=Bebas Neue:wght@200;300;400;500;600&display=swap');
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: $font-family;
   scroll-behavior: smooth;
 }
 
 .app {
-  background-color: $black;
+  background-color: $black-body;
   min-height: 100vh;
-  color: #ffffff;
+  color: white;
+  font-family: $font-family;
 }
 
+// Css for whole layout
+.layout-container{
+  color: white;
+  background-color: $black-body;
+  color: white;
+}
+
+// Header css
+.ant-layout-header {
+  &.header {
+    @apply p-5 h-24;
+    background-color: $black-body;
+    //z-index: 100;
+    //transition: height 0.3s ease, background-color 0.3s ease;
+  }
+
+  .header {
+    &--container {
+      @apply block items-center px-6 py-4 justify-between;
+      border-radius: 12px;
+    }
+  }
+}
+
+.layout-content {
+  @apply m-16;
+  & .container {
+    max-width: 100% !important;
+  }
+}
+
+// Button search css
 .nav-search {
   & .ant-input {
     border-radius: 8px;
@@ -45,36 +78,54 @@
   }
 }
 
-
-.ant-layout-header {
-  &.header {
-    @apply fixed w-full left-0 top-0 p-5 h-24;
-    background-color: $black;
-    z-index: 99;
-    transition: height 0.3s ease, background-color 0.3s ease;
-  }
-
-  .header {
-    &--container {
-      @apply block lg:flex items-center px-6 py-4 justify-between;
-      border-radius: 12px;
-    }
-  }
-}
-
-
-.layout-content {
-  & .container {
-    max-width: 100% !important;
-  }
-}
-
-
 .search {
   .ant-select-selection {
     background: #EFF0F7;
     border-radius: 100px;
   }
 }
+
+// Footer css
+.footer {
+  @apply flex gap-6;
+  position: relative;
+  background-color: $black-body;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-image: url("~/assets/images/footer-bg.jpg");
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 6rem 2rem;
+
+  &__content {
+    max-width: 1000px;
+
+    &__logo {
+      margin-bottom: 3rem;
+    }
+
+    &__menus {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+    }
+
+    &__menu {
+      @apply flex justify-center items-center;
+      flex-direction: column;
+      margin-top: 1rem;
+
+      font-size: 1.5rem;
+      font-weight: 600;
+
+      & > * ~ * {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
 
 
