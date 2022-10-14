@@ -8,65 +8,79 @@
         />
       </template>
       <template #actions>
-        <setting-outlined key="setting"/>
-        <edit-outlined key="edit"/>
-        <ellipsis-outlined key="ellipsis"/>
+        <setting-outlined key="setting" />
+        <edit-outlined key="edit" />
+        <ellipsis-outlined key="ellipsis" />
       </template>
       <a-card-meta title="Card title" description="This is the description">
         <template #avatar>
-          <a-avatar src="https://joeschmoe.io/api/v1/random"/>
+          <a-avatar src="https://joeschmoe.io/api/v1/random" />
         </template>
       </a-card-meta>
     </a-card>
-    <div>
-      We define the themes we will use in our project. For this tutorial, we'll use DaisyUI's prebuilt themes - light,
-      luxury, and dark themes.
-
-      DaisyUI has ready-to-use prebuilt themes. We'll use some of them for demonstration purposes. Check out DaisyUI's
-      https://daisy.ui.com/ to see the complete list of available themes.
-
-      We are now ready to use DaisyUI components classes and themes.
-      Create a header and sample pages
-
-      Let's create a simple header for our site. We'll display a dropdown list of themes here and links to sample pages.
-      We will add two sample pages - index (default page) and about page.
-
-      Create a TheHeader.vue inside src/components folder and paste the following code:
-
-      We define the themes we will use in our project. For this tutorial, we'll use DaisyUI's prebuilt themes - light,
-      luxury, and dark themes.
-
-      DaisyUI has ready-to-use prebuilt themes. We'll use some of them for demonstration purposes. Check out DaisyUI's
-      https://daisy.ui.com/ to see the complete list of available themes.
-
-      We are now ready to use DaisyUI components classes and themes.
-      Create a header and sample pages
-
-      Let's create a simple header for our site. We'll display a dropdown list of themes here and links to sample pages.
-      We will add two sample pages - index (default page) and about page.
-
-      Create a TheHeader.vue inside src/components folder and paste the following code:
-
-      We define the themes we will use in our project. For this tutorial, we'll use DaisyUI's prebuilt themes - light,
-      luxury, and dark themes.
-
-      DaisyUI has ready-to-use prebuilt themes. We'll use some of them for demonstration purposes. Check out DaisyUI's
-      https://daisy.ui.com/ to see the complete list of available themes.
-
-      We are now ready to use DaisyUI components classes and themes.
-      Create a header and sample pages
-
-      Let's create a simple header for our site. We'll display a dropdown list of themes here and links to sample pages.
-      We will add two sample pages - index (default page) and about page.
-
-      Create a TheHeader.vue inside src/components folder and paste the following code:
-    </div>
   </div>
 </template>
+
 <script>
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+
 export default {
   name: 'IndexPage',
-
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+      swiperOption: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        slidesPerGroup: 3,
+        // loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      }
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+
+.swiper {
+  height: 360px;
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+
+    &.slide-1 {
+      background-image: url('https://v1.github.surmon.me/images/example/8.jpg')
+    }
+
+    &.slide-2 {
+      background-image: url('https://v1.github.surmon.me/images/example/6.jpg')
+    }
+
+    &.slide-3 {
+      background-image: url('https://v1.github.surmon.me/images/example/7.jpg')
+    }
+
+    &.slide-4 {
+      background-image: url('https://v1.github.surmon.me/images/example/8.jpg')
+    }
+
+    &.slide-5 {
+      background-image: url('https://v1.github.surmon.me/images/example/5.jpg')
+    }
+  }
+}
+</style>
 

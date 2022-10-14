@@ -11,6 +11,17 @@
         <BasicLayoutNavBar/>
       </div>
     </a-layout-header>
+    <swiper class="swiper" :options="swiperOption">
+      <swiper-slide>
+        <img class="w-full" src="https://static.topcv.vn/img/TOP%20CV%20T10%20(1)%20(1).png"/>
+      </swiper-slide>
+      <swiper-slide>
+        <img class="w-full" src="https://static.topcv.vn/img/Banner%20cho%20TopCV-01.png"/>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+      <div class="swiper-button-prev" slot="button-prev"></div>
+      <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
 
     <a-layout-content class="layout-content">
       <div class="flex flex-col">
@@ -49,14 +60,16 @@
           </div>
         </div>
     </a-layout-footer>
-
   </a-layout>
+
 </template>
 
 <script>
 import BasicLayoutSearch from "@/components/BasicLayout/Search";
 import BasicLayoutNavBar from "@/components/BasicLayout/NavBar";
 import BasicLayoutLogo from "@/components/BasicLayout/Logo";
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+
 
 export default {
   // colorMode: 'dark',
@@ -64,11 +77,64 @@ export default {
   components: {
     BasicLayoutSearch,
     BasicLayoutNavBar,
-    BasicLayoutLogo
+    BasicLayoutLogo,
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+      swiperOption: {
+        // slidesPerView: 3,
+        // spaceBetween: 30,
+        // slidesPerGroup: 3,
+        // loop: false,
+        // loopFillGroupWithBlank: true,
+        pagination: {
+          el: '.swiper-pagination',
+          type: 'fraction'
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      }
+    }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "assets/css/main";
+
+.swiper {
+  height: 480px;
+
+  .swiper-slide {
+    width: 100% !important;
+    background-position: center;
+    background-size: cover;
+
+    &.slide-1 {
+      background-image: url('https://v1.github.surmon.me/images/example/8.jpg')
+    }
+
+    &.slide-2 {
+      background-image: url('https://v1.github.surmon.me/images/example/6.jpg')
+    }
+
+    &.slide-3 {
+      background-image: url('https://v1.github.surmon.me/images/example/7.jpg')
+    }
+
+    &.slide-4 {
+      background-image: url('https://v1.github.surmon.me/images/example/8.jpg')
+    }
+
+    &.slide-5 {
+      background-image: url('https://v1.github.surmon.me/images/example/5.jpg')
+    }
+  }
+
+  //swiper-slide swiper-slide-active
+}
 </style>

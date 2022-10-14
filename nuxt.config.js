@@ -19,7 +19,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'ant-design-vue/dist/antd.css',
-
+    'swiper/swiper.scss',
     // SCSS file in the project
     '~/assets/css/tailwind.css',
     '~/assets/css/main.scss',
@@ -27,7 +27,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/antd-ui'
+    '@/plugins/antd-ui',
+    '@/plugins/swiper'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

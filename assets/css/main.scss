@@ -10,7 +10,7 @@
 }
 
 .app {
-  background-color: $black-body;
+  background-color: gray;
   min-height: 100vh;
   color: white;
   font-family: $font-family;
@@ -28,8 +28,8 @@
   &.header {
     @apply p-5 h-24;
     background-color: $black-body;
-    //z-index: 100;
-    //transition: height 0.3s ease, background-color 0.3s ease;
+    z-index: 999;
+    transition: height 0.3s ease, background-color 0.3s ease;
   }
 
   .header {
@@ -40,8 +40,50 @@
   }
 }
 
+// Custom ant-results
+.ant-result-title,
+.ant-result-subtitle {
+  color: white;
+}
+
+// Custom ant button
+.ant-btn,
+.ant-btn-primary{
+  background-color: #1890ff;
+  padding: 0 16px;
+}
+// Custom ant tabs
+.ant-tabs {
+  .ant-tabs-ink-bar{
+    background-color: $primary;
+  }
+  .ant-tabs-nav {
+    @apply p-1;
+
+    .ant-tabs-tab {
+      margin: 0;
+      color: white;
+      font-size: 1.25rem; /* 20px */
+      line-height: 1.75rem; /* 28px */
+      font-weight: 600;
+      min-width: 130px;
+      text-align: center;
+      padding: 6px 12px;
+    }
+
+    .ant-tabs-tab-active {
+      color: white;
+      &.ant-tabs-tab {
+      }
+    }
+  }
+  .ant-tabs-bar {
+    border: none;
+  }
+}
+
 .layout-content {
-  @apply m-16;
+  @apply mx-16 mb-16;
   & .container {
     max-width: 100% !important;
   }
@@ -83,6 +125,10 @@
     background: #EFF0F7;
     border-radius: 100px;
   }
+}
+.ant-select-auto-complete.ant-select-lg .ant-input {
+  padding-top: 6px;
+  padding-bottom: 10px;
 }
 
 // Footer css

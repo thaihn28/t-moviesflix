@@ -4,7 +4,8 @@
       <a-result
         status="404"
         title="404"
-        :sub-title="'Not Found'"
+        :sub-title="'Sorry, the page you visited does not exist.'"
+        class="title"
       >
         <template #extra>
           <a-button type="primary" @click="backHome">Back Home</a-button>
@@ -32,3 +33,17 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import "assets/css/main.scss";
+
+.ant-result-title{
+  color: white;
+}
+
+.ant-result-subtitle {
+  color: white !important;
+}
+
+</style>
+
