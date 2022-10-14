@@ -19,7 +19,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     'ant-design-vue/dist/antd.css',
-    'swiper/swiper.scss',
+    'swiper/css/swiper.css',
     // SCSS file in the project
     '~/assets/css/tailwind.css',
     '~/assets/css/main.scss',
