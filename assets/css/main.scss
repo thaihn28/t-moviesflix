@@ -27,7 +27,7 @@
 .ant-layout-header {
   &.header {
     @apply p-5 h-24;
-    background-color: $black-body;
+    background: none;
     z-index: 999;
     transition: height 0.3s ease, background-color 0.3s ease;
   }

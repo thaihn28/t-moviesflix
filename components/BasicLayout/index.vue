@@ -1,6 +1,6 @@
 <template>
   <a-layout class="layout-container">
-    <a-layout-header class="lg:flex header w-full items-center">
+    <a-layout-header class="lg:flex fixed header w-full items-center">
       <div class="inline-flex items-center w-full justify-start">
         <BasicLayoutLogo/>
       </div>
