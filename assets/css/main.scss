@@ -1,6 +1,5 @@
 @import 'vars/colors';
 @import "vars/font";
-@import url('https://fonts.googleapis.com/css?family=Bebas Neue:wght@200;300;400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -10,18 +9,19 @@
 }
 
 .app {
-  background-color: gray;
+  background-color: $black-body;
   min-height: 100vh;
-  color: white;
+  color: $white-primary;
   font-family: $font-family;
 }
 
 // Css for whole layout
-.layout-container{
-  color: white;
+.layout-container {
+  color: $white-primary;
   background-color: $black-body;
-  color: white;
+  color: $white-primary;
 }
+
 
 // Header css
 .ant-layout-header {
@@ -43,40 +43,55 @@
 // Custom ant-results
 .ant-result-title,
 .ant-result-subtitle {
-  color: white;
+  color: $white-primary;
 }
 
 // Custom ant button
 .ant-btn,
-.ant-btn-primary{
-  background-color: #1890ff;
+.ant-btn-primary {
+  background-color: $red-primary;
   padding: 0 16px;
+  color: $white-primary;
+  border: 1px solid transparent;
+
+  &:hover,
+  &:focus {
+    background-color: $red-secondary;
+    color: $white-primary;
+    border: 1px solid transparent;
+  }
 }
+
 // Custom ant tabs
 .ant-tabs {
-  .ant-tabs-ink-bar{
-    background-color: $primary;
+  .ant-tabs-ink-bar {
+    background-color: $red-primary;
   }
+
   .ant-tabs-nav {
     @apply p-1;
 
     .ant-tabs-tab {
       margin: 0;
-      color: white;
+      color: $white-primary;
       font-size: 1.25rem; /* 20px */
       line-height: 1.75rem; /* 28px */
       font-weight: 600;
       min-width: 130px;
       text-align: center;
       padding: 6px 12px;
+
+      &:hover {
+        opacity: .8;
+      }
     }
 
     .ant-tabs-tab-active {
-      color: white;
-      &.ant-tabs-tab {
-      }
+      color: $white-primary;
     }
+
   }
+
   .ant-tabs-bar {
     border: none;
   }
@@ -90,13 +105,13 @@
 }
 
 // Custom swiper
-.swiper{
+.swiper {
   .swiper-button-next,
   .swiper-button-prev {
     @apply text-white font-black;
   }
 
-  .swiper-pagination-bullets .swiper-pagination-bullet{
+  .swiper-pagination-bullets .swiper-pagination-bullet {
     @apply bg-white font-black;
   }
 }
@@ -107,7 +122,7 @@
     border-radius: 8px;
     padding-top: 2px;
     border: none;
-    color: white;
+    color: $white-primary;
     height: 40px;
     padding-left: 16px !important;
 
@@ -117,16 +132,18 @@
 
     &:focus {
       border-radius: 100px;
-      border: 1px solid white !important;
-      background: white !important;
+      border: 1px solid $white-primary !important;
+      background: $white-primary !important;
       color: black;
     }
+
     &:focus::-webkit-input-placeholder {
       color: black;
     }
   }
+
   & .ant-input-prefix {
-    color: white;
+    color: $white-primary;
     font-weight: bold;
     font-size: 14px;
   }
@@ -138,6 +155,7 @@
     border-radius: 100px;
   }
 }
+
 .ant-select-auto-complete.ant-select-lg .ant-input {
   padding-top: 6px;
   padding-bottom: 10px;
@@ -150,7 +168,7 @@
   background-color: $black-body;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: $white-primary;
   background-image: url("~/assets/images/footer-bg.jpg");
   background-position: top;
   background-size: cover;

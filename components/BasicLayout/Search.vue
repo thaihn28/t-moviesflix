@@ -9,6 +9,7 @@
     <a-input
       :placeholder="'Movies, Actors, Directors...'"
       class="nav-search pt-0.5"
+      :allow-clear="true"
     >
       <!--      <template #prefix>-->
       <!--        <IconSearch :color="isFocusSearch ? 'black' : 'white'"/>-->

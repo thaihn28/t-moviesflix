@@ -32,7 +32,7 @@
         </template>
       </a-popover>
     </div>
-    <a-button v-else @click="login">Sign in</a-button>
+    <a-button class="ant-btn-primary" v-else @click="login">Sign in</a-button>
   </div>
 </template>
 
@@ -87,9 +87,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ant-btn, .ant-btn-primary {
-  @apply bg-white;
-}
 .ant-avatar-image{
   @apply bg-white;
 }

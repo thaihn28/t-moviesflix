@@ -4,13 +4,13 @@
       <div class="inline-flex items-center w-full justify-start">
         <BasicLayoutLogo/>
       </div>
-      <div class="inline-flex w-full lg:ml-8 items-center">
+      <div class="inline-flex items-center" style="margin-right: 32px">
         <BasicLayoutSearch/>
       </div>
       <div class="inline-flex">
         <BasicLayoutNavBar/>
       </div>
-      <div class="inline-flex h-full" style="margin:0 0 10px 16px">
+      <div class="inline-flex h-full" style="margin:0 16px 16px 16px">
         <UserAvatar/>
       </div>
     </a-layout-header>
@@ -85,6 +85,7 @@ export default {
   },
   data() {
     return {
+      headerBackground: '',
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -100,6 +101,18 @@ export default {
         },
       }
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  methods: {
+    handleScroll (event) {
+      // Any code to be executed when the window is scrolled
+      console.log(event)
+    }
   }
 }
 </script>
@@ -114,6 +127,7 @@ export default {
     width: 100% !important;
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
   }
 }
 </style>
