@@ -29,6 +29,7 @@
     max-width: 45%;
     //transform: translate(-50%, -50%);
 
+
     &__title {
       @apply text-7xl font-bold text-left;
     }
@@ -46,6 +47,9 @@
     position: absolute;
     top: 20%;
     right: 15%;
+    @media (min-width: 1536px) {
+      right: 20%;
+    }
   }
 }
 
