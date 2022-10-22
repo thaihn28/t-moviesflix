@@ -1,32 +1,31 @@
 @import 'vars/colors';
 @import "vars/font";
+@import "vars/variable";
 
 * {
   margin: 0;
   padding: 0;
   font-family: $font-family;
   scroll-behavior: smooth;
+  color: $white-primary;
 }
 
 .app {
   background-color: $black-body;
   min-height: 100vh;
-  color: $white-primary;
   font-family: $font-family;
 }
 
 // Css for whole layout
 .layout-container {
-  color: $white-primary;
   background-color: $black-body;
   color: $white-primary;
 }
 
-
 // Header css
 .ant-layout-header {
   &.header {
-    @apply p-5 h-24;
+    @apply p-5 h-[70px];
     background: none;
     z-index: 999;
     transition: height 0.3s ease, background-color 0.3s ease;
@@ -47,19 +46,34 @@
 }
 
 // Custom ant button
-.ant-btn,
-.ant-btn-primary {
-  background-color: $red-primary;
-  padding: 0 16px;
-  color: $white-primary;
-  border: 1px solid transparent;
+::v-deep .ant-btn {
+  @apply px-[16px] pt-[1px];
 
-  &:hover,
-  &:focus {
-    background-color: $red-secondary;
+  &.primary-2{
+    background-color: $red-primary;
     color: $white-primary;
     border: 1px solid transparent;
+    &:hover,
+    &:focus {
+      background-color: $red-ternary;
+      color: $white-primary;
+      border: 1px solid transparent;
+    }
   }
+
+  &.outline-2{
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    box-shadow: unset;
+
+    &:hover{
+      background-color: $gray-primary;
+      color: $black-primary !important;
+      border: none;
+      box-shadow: 0px 0px 7px 9px #5050504d;
+    }
+  }
+
 }
 
 // Custom ant tabs
@@ -95,6 +109,14 @@
   .ant-tabs-bar {
     border: none;
   }
+}
+
+//Custome ant spin
+.ant-spin-dot-item{
+  background-color: $red-primary;
+}
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot{
+  top: 100%;
 }
 
 .layout-content {
@@ -194,7 +216,7 @@
       margin-top: 1rem;
 
       font-size: 1.5rem;
-      font-weight: 600;
+      font-weight: 500;
 
       & > * ~ * {
         margin-top: 1rem;

@@ -8,7 +8,7 @@
         class="title"
       >
         <template #extra>
-          <a-button type="primary" @click="backHome">Back Home</a-button>
+          <a-button class="ant-btn primary-2" type="primary" danger @click="backHome">Back Home</a-button>
         </template>
       </a-result>
     </template>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+// import { mapMutations } from 'vuex'
+
 export default {
   name: 'ErrorPage',
   layout: 'error', // you can set a custom layout for the error page
@@ -25,6 +27,12 @@ export default {
       type: Object,
       default: () => {},
     },
+  },
+  mounted() {
+    this.$store.commit("error/setError", this.error)
+  },
+  beforeDestroy() {
+    this.$store.commit("error/setError", {})
   },
   methods: {
     backHome() {
