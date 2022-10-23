@@ -1,17 +1,17 @@
 <template>
   <a-spin size="large" :spinning="loading">
     <a-layout class="layout-container">
-      <a-layout-header id="header-id" ref="layoutHeader" class="grid grid-cols-12 fixed header w-full items-center">
-        <div class="inline-flex col-span-4 items-center justify-start" style="margin-left: 16px">
+      <a-layout-header id="header-id" ref="layoutHeader" class="flex fixed header w-full items-center">
+        <div class="inline-flex items-center justify-start flex-none" style="margin-left: 16px">
           <BasicLayoutLogo/>
         </div>
-        <div class="items-center col-span-3">
+        <div class="inline-flex items-center justify-end flex-auto">
           <BasicLayoutSearch/>
         </div>
-        <div class="inline-flex 2xl:col-span-4 justify-end col-span-4" style="margin-top: 8px">
+        <div class="inline-flex justify-end flex-auto" style="margin-top: 8px">
           <BasicLayoutNavBar/>
         </div>
-        <div class="h-full inline-flex justify-center items-start col-span-1" style="margin:8px 0 16px 16px">
+        <div class="inline-flex justify-center items-start" style="margin:8px 0 16px 16px">
           <UserAvatar/>
         </div>
       </a-layout-header>
