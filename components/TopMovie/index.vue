@@ -1,43 +1,82 @@
 <template>
-  <div>
-    <h2>Top rated movie</h2>
-    <swiper class="swiper">
-      <swiper-slide class="slide">Slide 1</swiper-slide>
-      <swiper-slide class="slide">Slide 2</swiper-slide>
-      <swiper-slide class="slide">Slide 3</swiper-slide>
-      <swiper-slide class="slide">Slide 4</swiper-slide>
-      <swiper-slide class="slide">Slide 5</swiper-slide>
-      <swiper-slide class="slide">Slide 6</swiper-slide>
-      <swiper-slide class="slide">Slide 7</swiper-slide>
-      <swiper-slide class="slide">Slide 8</swiper-slide>
+  <div class="top-movie-container">
+    <h2 class="text-2xl font-bold text-white" style="margin-bottom: 16px">Hot movies</h2>
+    <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
+      <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
+        <img class="w-[220px] h-[320px] rounded-2xl object-cover object-center" :src="item.image" alt="thumb">
+        <div class="text-base font-semibold mt-2">My Hero Academia: World Heroes's Mission {{idx}}</div>
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
-    <a-card hoverable style="width: 300px">
-      <template #cover>
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
-      </template>
-      <template #actions>
-        <setting-outlined key="setting" />
-        <edit-outlined key="edit" />
-        <ellipsis-outlined key="ellipsis" />
-      </template>
-      <a-card-meta title="Card title" description="This is the description">
-        <template #avatar>
-          <a-avatar src="https://joeschmoe.io/api/v1/random" />
-        </template>
-      </a-card-meta>
-    </a-card>
   </div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import 'swiper/css/swiper.css'
+
 export default {
-  name: "index"
+  name: "index",
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  data() {
+    return {
+      swiperOption: {
+        slidesPerView: 6,
+        freeMode: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
+      },
+      swiperOptionv: {
+        direction: 'vertical',
+        spaceBetween: 50,
+        pagination: {
+          el: '.swiper-pagination-v',
+          clickable: true
+        }
+      },
+      slides: Array.from({length: 10}, (_, i) => {
+        return {
+          title: `Slide ${i}`,
+          image: "https://www.themoviedb.org/t/p/original/lXthmT7NOhTJaugcodhdkXjyWZH.jpg"
+        }
+      }),
+    }
+  },
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.$swiper
+    },
+  },
+  mounted() {
+  },
+  methods: {
+    changeSwiperIndex() {
+      const isEndSlider = this.swiper.isEnd
+      if(isEndSlider){
+        /*TODO: when isEnd => call API */
+        console.log("===swiper", this.swiper)
+        console.log("===Call api")
+      }
+      return isEndSlider
+    }
+  }
+
 }
 </script>
 
 <style lang="scss" scoped>
+@import "style.scss";
+.swiper {
+  height: 420px;
+  .swiper-slide {
+    width: 15% !important;
+  }
+}
+
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <a-spin size="large" :spinning="loading">
   <a-layout class="layout-container">
-    <a-layout-header id="header-id" class="lg:flex fixed header w-full items-center">
+    <a-layout-header id="header-id" ref="layoutHeader" class="lg:flex fixed header w-full items-center">
       <div class="inline-flex items-center w-full justify-start">
         <BasicLayoutLogo/>
       </div>
@@ -112,7 +112,7 @@ export default {
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-          delay: 2000,
+          delay: 3000,
           disableOnInteraction: false
         },
         loop: true,
@@ -129,7 +129,7 @@ export default {
           image: 'https://www.themoviedb.org/t/p/original/2RHjd10wqv57xYzZkNK8Sl09Ddt.jpg'
         }
       }),
-      loading: false
+      loading: false,
     }
   },
   created() {
