@@ -25,7 +25,7 @@
 // Header css
 .ant-layout-header {
   &.header {
-    @apply p-5 h-[70px];
+    @apply px-5 h-[80px];
     background: none;
     z-index: 999;
     transition: height 0.3s ease, background-color 0.3s ease;

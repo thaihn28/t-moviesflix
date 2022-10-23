@@ -12,21 +12,21 @@
               class="p-4  border-gray-200 flex gap-3 items-center cursor-pointer hover:bg-[#dbdbdb] hover:rounded-t"
             >
               <a-avatar src="https://joeschmoe.io/api/v1/random" />
-              <span>{{ userDisplayName }}</span>
+              <span class="text-black">{{ userDisplayName }}</span>
             </div>
             <div
               class="p-4 border-b border-gray-200 flex gap-3 items-center cursor-pointer hover:bg-[#dbdbdb] hover:rounded-t"
               @click="goToProfile"
             >
               <IconRequestActive/>
-              <span>Profile Management</span>
+              <span class="text-black">Profile Management</span>
             </div>
             <div
               class="p-4 flex items-center gap-3 cursor-pointer hover:bg-[#dbdbdb] hover:rounded-b"
               @click="logout"
             >
               <IconLogout/>
-              <span class="text-primary">Sign Out</span>
+              <span class="text-black">Sign Out</span>
             </div>
           </div>
         </template>
@@ -87,7 +87,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/css/main";
 .ant-avatar-image{
   @apply bg-white;
 }

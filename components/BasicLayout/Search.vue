@@ -1,6 +1,6 @@
 <template>
   <a-auto-complete
-    class="search w-full lg:w-auto xl:w-[400px]"
+    class="search w-96 lg:w-auto xl:w-[400px]"
     option-label-prop="value"
     size="large"
   >

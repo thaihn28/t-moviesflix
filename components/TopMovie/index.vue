@@ -3,8 +3,18 @@
     <h2 class="text-2xl font-bold text-white" style="margin-bottom: 16px">Hot movies</h2>
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
       <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
-        <img class="w-[220px] h-[320px] rounded-2xl object-cover object-center" :src="item.image" alt="thumb">
-        <div class="text-base font-semibold mt-2">My Hero Academia: World Heroes's Mission {{idx}}</div>
+        <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
+          <div class="z-50 relative w-full h-full flex flex-col gap-y-2 ">
+            <div class="max-w-full h-[250px] md:h-[85%] rounded-xl">
+              <img class="w-full h-full rounded-xl object-cover object-center" :src="item.image" alt="">
+            </div>
+            <span class="max-w-[80%] h-[30px] text-base truncate font-semibold mt-2">My Hero Academia: World Heroes's Mission {{idx}}</span>
+          </div>
+          <div class="absolute inset-0 p-3">
+            <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.image" alt="">
+            <div class="layer absolute inset-0 md:backdrop-blur-md rounded-xl bg-[#000000] bg-opacity-40"></div>
+          </div>
+        </div>
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -24,20 +34,12 @@ export default {
   data() {
     return {
       swiperOption: {
-        slidesPerView: 6,
+        slidesPerView: 7,
         freeMode: true,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
         },
-      },
-      swiperOptionv: {
-        direction: 'vertical',
-        spaceBetween: 50,
-        pagination: {
-          el: '.swiper-pagination-v',
-          clickable: true
-        }
       },
       slides: Array.from({length: 10}, (_, i) => {
         return {
@@ -74,7 +76,7 @@ export default {
 .swiper {
   height: 420px;
   .swiper-slide {
-    width: 15% !important;
+    width: 250px !important;
   }
 }
 
