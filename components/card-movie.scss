@@ -1,0 +1,82 @@
+@import "assets/css/vars/colors.scss";
+
+.card-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.card-movie {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s ease-out;
+  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-movie:hover {
+  transform: translateY(10px);
+}
+
+.card-movie:hover:before {
+  opacity: 1;
+}
+
+.card-movie:hover .card-info {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.card-movie:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.card-movie img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+}
+
+.card-movie .card-info {
+  position: relative;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.5s;
+}
+
+.card-movie .card-info button {
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background: $red-primary;
+  color: $white-primary;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+
+.card-movie .card-info button:hover {
+  background: $red-ternary;
+  color: $white-primary;
+}
+
+.card-title:hover{
+  opacity: 0.8;
+}

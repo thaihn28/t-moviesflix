@@ -1,6 +1,6 @@
 <template>
-  <div class="top-movie-container">
-    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">Hot movies</h2>
+  <div>
+    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">Popular TV</h2>
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
       <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
         <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
@@ -32,10 +32,9 @@
                 </button>
               </div>
             </div>
-            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold">My Hero Academia: World Heroes's Mission World Heroes's Mission {{
+            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold mt-2">My Hero Academia: World Heroes's Mission World Heroes's Mission {{
                 idx
-              }}
-            </span>
+              }}</span>
           </div>
           <div class="absolute inset-0 p-3">
             <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.image" alt="">
@@ -53,7 +52,7 @@ import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 export default {
-  name: "TopMovieComponent",
+  name: "PopularTVComponent",
   components: {
     Swiper,
     SwiperSlide,
@@ -72,7 +71,7 @@ export default {
         return {
           id: i,
           title: `Slide ${i}`,
-          image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
+          image: "https://image.tmdb.org/t/p/original/spCAxD99U1A6jsiePFoqdEcY0dG.jpg"
         }
       }),
       isPremium: false
@@ -94,19 +93,20 @@ export default {
         console.log("===Call api")
       }
       return isEndSlider
-    },
-    redirectToDetail(id) {
-      this.$router.push(`movie/detail/${id}`)
     }
+  },
+  redirectToDetail(id) {
+    this.$router.push(
+      this.localeRoute({ path: `movie/detail/${id}}` })
+    )
   }
-
 }
 </script>
 
 <style lang="scss" scoped>
 @import "assets/css/vars/colors.scss";
-@import "components/card-movie.scss";
 @import "style.scss";
+@import "components/card-movie.scss";
 
 .swiper {
   height: 430px;

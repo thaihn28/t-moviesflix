@@ -1,7 +1,7 @@
 <template>
   <a-spin size="large" :spinning="loading">
     <a-layout class="layout-container">
-      <a-layout-header id="header-id" ref="layoutHeader" class="flex fixed header w-full items-center">
+      <a-layout-header id="header-id" class="flex fixed header w-full items-center">
         <div class="inline-flex items-center justify-start flex-none" style="margin-left: 16px">
           <BasicLayoutLogo/>
         </div>
@@ -15,7 +15,7 @@
           <UserAvatar/>
         </div>
       </a-layout-header>
-      <div v-if="getErrorStatusCode !== 404">
+      <div v-if="getErrorStatusCode && isHomePage">
         <BasicSlider/>
       </div>
       <a-layout-content class="layout-content">
@@ -88,9 +88,13 @@ export default {
     this.loading = true
   },
   computed: {
+    isHomePage(){
+      const path = this.$route.path
+      return path === '/' && path.length === 1
+    },
     getErrorStatusCode() {
       const error = this.$store.getters['error/getError']
-      return error?.statusCode
+      return error?.statusCode !== 404
     }
   },
   destroyed() {

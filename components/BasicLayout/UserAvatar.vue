@@ -1,17 +1,19 @@
 <template>
   <div class="flex items-center">
-<!--    <div v-if="loggedIn || true" class="leading-normal">-->
+    <!--    <div v-if="loggedIn || true" class="leading-normal">-->
     <div v-if="loggin" class="leading-normal">
       <a-popover v-model="visible" trigger="click" placement="bottomRight">
+        <a-tooltip :title="`${userDisplayName}`" placement="bottom">
         <span class="inline-flex items-center cursor-pointer gap-4">
           <a-avatar src="https://joeschmoe.io/api/v1/random"/>
         </span>
+        </a-tooltip>
         <template slot="content">
           <div class="min-w-[144px] max-h-dropdown-header">
             <div
               class="p-4  border-gray-200 flex gap-3 items-center cursor-pointer hover:bg-[#dbdbdb] hover:rounded-t"
             >
-              <a-avatar src="https://joeschmoe.io/api/v1/random" />
+              <a-avatar src="https://joeschmoe.io/api/v1/random"/>
               <span class="text-black">{{ userDisplayName }}</span>
             </div>
             <div
@@ -39,8 +41,7 @@
 <script>
 export default {
   name: 'UserAvatar',
-  components: {
-  },
+  components: {},
   data() {
     return {
       visible: false,
@@ -61,7 +62,7 @@ export default {
     async getUserDisplayName() {
       const currentUser = await this.$repositories.currentUser.index({})
       if (currentUser) {
-        this.userDisplayName = currentUser.display_name ? currentUser.display_name: ''
+        this.userDisplayName = currentUser.display_name ? currentUser.display_name : ''
       } else {
         this.userDisplayName = ''
       }
@@ -87,7 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ant-avatar-image{
+.ant-avatar-image {
   @apply bg-white;
 }
 </style>

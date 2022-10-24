@@ -1,6 +1,6 @@
 <template>
-  <div class="top-movie-container">
-    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">Hot movies</h2>
+  <div>
+    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">Upcoming movies</h2>
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
       <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
         <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
@@ -8,8 +8,8 @@
             <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
               <img class="w-full h-full rounded-xl object-cover object-center" :src="item.image" alt="">
               <div class="card-info">
-                <button v-if="!isPremium" class="flex" @click="redirectToDetail(item.id)">
-                  <span class="mr-[4px] mt-[2px]">
+                <button v-if="!isPremium" class="flex">
+                  <span  class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-eye" viewBox="0 0 16 16">
                     <path
@@ -32,10 +32,9 @@
                 </button>
               </div>
             </div>
-            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold">My Hero Academia: World Heroes's Mission World Heroes's Mission {{
+            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold mt-2">My Hero Academia: World Heroes's Mission World Heroes's Mission {{
                 idx
-              }}
-            </span>
+              }}</span>
           </div>
           <div class="absolute inset-0 p-3">
             <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.image" alt="">
@@ -53,7 +52,7 @@ import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 export default {
-  name: "TopMovieComponent",
+  name: "UpcomingMovieTV",
   components: {
     Swiper,
     SwiperSlide,
@@ -70,9 +69,8 @@ export default {
       },
       slides: Array.from({length: 10}, (_, i) => {
         return {
-          id: i,
           title: `Slide ${i}`,
-          image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
+          image: "https://www.themoviedb.org/t/p/original/bGkLsmAjfgZTFv0WZGwqwbmYZvF.jpg"
         }
       }),
       isPremium: false
@@ -94,9 +92,6 @@ export default {
         console.log("===Call api")
       }
       return isEndSlider
-    },
-    redirectToDetail(id) {
-      this.$router.push(`movie/detail/${id}`)
     }
   }
 
@@ -104,9 +99,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "assets/css/vars/colors.scss";
 @import "components/card-movie.scss";
-@import "style.scss";
 
 .swiper {
   height: 430px;
@@ -115,5 +108,8 @@ export default {
     width: 250px !important;
   }
 }
+
+
+
 
 </style>

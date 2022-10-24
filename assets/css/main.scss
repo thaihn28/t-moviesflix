@@ -44,6 +44,11 @@
 .ant-result-subtitle {
   color: $white-primary;
 }
+// Custom ant-tooltip
+.ant-tooltip-inner{
+  background-color: $white-primary;
+  color: $black-primary;
+}
 
 // Custom ant button
 ::v-deep .ant-btn {

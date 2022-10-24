@@ -2,66 +2,30 @@
   <swiper class="swiper" :options="swiperOption">
     <swiper-slide v-for="(item,idx) in images" :key="idx">
       <img class="w-full h-full" :src="item.image"/>
-      <div class="content max-w-xl absolute top-[15%] bottom-5 left-[10%] mb-5 text-white drop-shadow-md flex flex-col gap-y-5 z-[150]">
-        <h2 class="text-7xl font-bold text-left">{{ item.title }}</h2>
-        <span class="font-bold text-justify">{{ item.overview }}</span>
-        <div class="flex gap-2 flex-row flex-wrap">
-          <a-button
-            class="ant-btn primary-2 watch-primary-btn"
-            danger
-            shape="round"
-          >
-            Watch now
-          </a-button>
-
-          <a-button
-            shape="round"
-            class="ant-btn outline-2 watch-outline-btn"
-          >
-            Watch trailer
-          </a-button>
+      <div
+        class="content w-full h-full absolute top-0 mb-5 text-white items-center justify-center drop-shadow-md flex flex-row gap-y-5 gap-x-32">
+        <div class="max-w-2xl gap-y-8 h-full flex items-center justify-center flex-col">
+          <h2 class="text-7xl font-bold text-left">{{ item.title }}</h2>
+          <span class="font-bold text-justify">{{ item.overview }}</span>
+          <div class="w-full gap-2 flex-row flex-wrap">
+            <a-button
+              class="ant-btn primary-2 watch-primary-btn"
+              danger
+              shape="round"
+            >
+              Watch now
+            </a-button>
+            <a-button
+              shape="round"
+              class="ant-btn outline-2 watch-outline-btn"
+            >
+              Watch trailer
+            </a-button>
+          </div>
         </div>
-        <!--              <div class="image-container&#45;&#45;content__button">-->
-        <!--                <a-button-->
-        <!--                  class="ant-btn primary-2 watch-primary-btn"-->
-        <!--                  danger-->
-        <!--                  shape="round"-->
-        <!--                >-->
-        <!--                  Watch now-->
-        <!--                </a-button>-->
-
-        <!--                <a-button-->
-        <!--                  shape="round"-->
-        <!--                  class="ant-btn outline-2 watch-outline-btn"-->
-        <!--                >-->
-        <!--                  Watch trailer-->
-        <!--                </a-button>-->
-        <!--              </div>-->
+        <img src="https://www.themoviedb.org/t/p/original/lXthmT7NOhTJaugcodhdkXjyWZH.jpg" alt=""
+             class="rounded-3xl h-[480px] w-[360px] object-cover object-center"/>
       </div>
-
-      <!--            <div class="image-container&#45;&#45;content">-->
-      <!--              <h2 class="image-container&#45;&#45;content__title">{{ item.title }}</h2>-->
-      <!--              <div class="image-container&#45;&#45;content__overview">{{ item.overview }}</div>-->
-      <!--              <div class="image-container&#45;&#45;content__button">-->
-      <!--                <a-button-->
-      <!--                  class="ant-btn primary-2 watch-primary-btn"-->
-      <!--                  danger-->
-      <!--                  shape="round"-->
-      <!--                >-->
-      <!--                  Watch now-->
-      <!--                </a-button>-->
-
-      <!--                <a-button-->
-      <!--                  shape="round"-->
-      <!--                  class="ant-btn outline-2 watch-outline-btn"-->
-      <!--                >-->
-      <!--                  Watch trailer-->
-      <!--                </a-button>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--            <div class="image-container&#45;&#45;poster rounded-3xl sm:overflow-hidden">-->
-      <!--              <img src="https://www.themoviedb.org/t/p/original/lXthmT7NOhTJaugcodhdkXjyWZH.jpg" alt="" class="h-[480px] w-[360px] object-cover object-center" />-->
-      <!--            </div>-->
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
@@ -76,14 +40,14 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  data(){
+  data() {
     return {
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-          delay: 300000,
+          delay: 3000,
           disableOnInteraction: false
         },
         loop: true,
