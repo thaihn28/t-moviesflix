@@ -15,11 +15,9 @@
           <UserAvatar/>
         </div>
       </a-layout-header>
-      <div v-if="getErrorStatusCode && isHomePage">
-        <BasicSlider/>
-      </div>
-      <a-layout-content class="layout-content">
-        <div class="flex flex-col mt-10">
+
+      <a-layout-content>
+        <div>
           <slot/>
         </div>
       </a-layout-content>
@@ -73,8 +71,7 @@ export default {
     BasicLayoutNavBar,
     BasicLayoutLogo,
     UserAvatar,
-
-    BasicSlider
+    BasicSlider,
   },
   data() {
     return {
@@ -88,14 +85,10 @@ export default {
     this.loading = true
   },
   computed: {
-    isHomePage(){
-      const path = this.$route.path
-      return path === '/' && path.length === 1
-    },
-    getErrorStatusCode() {
-      const error = this.$store.getters['error/getError']
-      return error?.statusCode !== 404
-    }
+    // getErrorStatusCode() {
+    //   const error = this.$store.getters['error/getError']
+    //   return error?.statusCode !== 404
+    // }
   },
   destroyed() {
     if (process.client) {

@@ -1,17 +1,22 @@
 <template>
   <div>
-    <div>
-      <img src="https://www.themoviedb.org/t/p/original/7prYzufdIOy1KCTZKVWpjBFqqNr.jpg" alt="">
-    </div>
+    <PosterDetail/>
   </div>
 </template>
 
 <script>
+import PosterDetail from "@/components/Detail/PosterDetail";
+
 export default {
-  name: "MovieDetail"
+  name: "MovieDetail",
+  components: {
+    PosterDetail
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
+::v-deep layout-content{
+  margin: 0;
+}
 </style>

@@ -1,0 +1,62 @@
+.banner{
+  height: 50vh;
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to top, #0f0f0f, rgba(#000, 0));
+  }
+}
+
+.movie-content {
+  //max-width: 100%;
+  margin-top: -200px;
+  position: relative;
+  z-index: 5;
+
+  &__poster {
+    flex: 1;
+    width: 360px;
+
+    &__img {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 30px;
+      padding-top: 165%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  &__info{
+    width: 100%;
+    position: relative;
+    padding-left: 4.5rem;
+
+    .title {
+      font-size: 4.5rem;
+      line-height: 1;
+      font-weight: 600;
+    }
+  }
+}
