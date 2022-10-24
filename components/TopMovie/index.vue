@@ -1,6 +1,6 @@
 <template>
   <div class="top-movie-container">
-    <h2 class="text-2xl font-bold text-white" style="margin-bottom: 16px">Hot movies</h2>
+    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">Hot movies</h2>
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
       <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
         <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">

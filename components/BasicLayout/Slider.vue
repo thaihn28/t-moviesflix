@@ -39,7 +39,6 @@
         <!--              </div>-->
       </div>
 
-
       <!--            <div class="image-container&#45;&#45;content">-->
       <!--              <h2 class="image-container&#45;&#45;content__title">{{ item.title }}</h2>-->
       <!--              <div class="image-container&#45;&#45;content__overview">{{ item.overview }}</div>-->

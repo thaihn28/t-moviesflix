@@ -28,9 +28,8 @@
         <div class="footer__content container">
           <div class="footer__content__logo">
             <div class="logo flex items-center justify-center">
-              <img class="w-10 h-10" src="~/assets/images/logo.png">
-              <nuxt-link to="/" class="text-2xl mt-2 ml-2 font-bold" style="margin-left: 8px">
-                tMovies
+              <nuxt-link to="/" class="text-xl mt-2 ml-2 font-bold" style="margin-left: 8px">
+                T-Moviesflix
               </nuxt-link>
             </div>
           </div>
