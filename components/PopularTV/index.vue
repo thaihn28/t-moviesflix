@@ -8,7 +8,7 @@
             <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
               <img class="w-full h-full rounded-xl object-cover object-center" :src="item.image" alt="">
               <div class="card-info">
-                <button v-if="!isPremium" class="flex" @click="redirectToDetail(item.id)">
+                <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.id)">
                   <span class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-eye" viewBox="0 0 16 16">
@@ -18,9 +18,9 @@
                       d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                   </svg>
                   </span>
-                  Watch Now
-                </button>
-                <button v-else class="flex">
+                  <span class="font-medium">Watch</span>
+                </a-button>
+                <a-button v-else @click="handleUnlockMovie" class="flex action-button">
                   <span class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-lock" viewBox="0 0 16 16">
@@ -28,8 +28,8 @@
                         d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
                     </svg>
                   </span>
-                  Premium
-                </button>
+                  <span class="font-medium">Unlock</span>
+                </a-button>
               </div>
             </div>
             <span class="card-title max-w-full h-[30px] text-base truncate font-semibold mt-2">My Hero Academia: World Heroes's Mission World Heroes's Mission {{

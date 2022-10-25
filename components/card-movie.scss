@@ -60,10 +60,11 @@
   transition: 0.5s;
 }
 
-.card-movie .card-info button {
-  padding: 0.6rem;
+.card-movie .card-info .action-button {
+  height: 36px;
+  padding: 7px 12px;
   outline: none;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 3px;
   background: $red-primary;
   color: $white-primary;
@@ -72,11 +73,15 @@
   transition: 0.4s ease;
 }
 
-.card-movie .card-info button:hover {
+.card-movie .card-info .action-button:hover {
   background: $red-ternary;
   color: $white-primary;
 }
 
 .card-title:hover{
   opacity: 0.8;
+}
+
+::v-deep .ant-btn > i, .ant-btn > span {
+  font-weight: 500;
 }
