@@ -1,4 +1,4 @@
-@import "assets/css/vars/colors";
+@import "assets/css/vars/colors.scss";
 
 ::v-deep .swiper {
   height: 720px;
@@ -28,7 +28,6 @@
     left: 10%;
     max-width: 45%;
     //transform: translate(-50%, -50%);
-
 
     &__title {
       @apply text-7xl font-bold text-left;

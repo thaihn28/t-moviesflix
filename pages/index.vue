@@ -13,7 +13,7 @@
 import TopMovie from "@/components/TopMovie";
 import PopularTV from "@/components/PopularTV";
 import UpcomingMovie from "@/components/UpcomingMovie";
-import Slider from "@/components/BasicLayout/Slider";
+import Slider from "@/components/SliderHeader/Slider";
 
 export default {
   name: 'HomePage',

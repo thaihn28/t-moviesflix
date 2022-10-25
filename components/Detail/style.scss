@@ -29,13 +29,15 @@
 }
 
 .movie-content {
-  max-width: 100%;
-  //margin-top: -200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 65%;
+  margin: -200px auto 64px auto;
   position: relative;
   z-index: 5;
 
   &__poster {
-    flex: 1;
     width: 360px;
 
     &__img {
@@ -49,14 +51,44 @@
     }
   }
   &__info{
-    width: 100%;
+    width: 70%;
+    padding-left: 2rem;
     position: relative;
-    //margin-left: -64px;
 
     .title {
       font-size: 4.5rem;
-      line-height: 1;
+      line-height: 1.25;
       font-weight: 600;
     }
+
+    .btn-action{
+      @apply my-8;
+    }
+
+    .cate {
+      @apply my-8;
+
+      &__item {
+        padding: 0.5rem 1.5rem;
+        border: 2px solid #FFFFFF;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background-color: #0f0f0f;
+      }
+    }
   }
+}
+
+::v-deep .ant-btn {
+  &.primary-2:hover{
+    box-shadow: 0px 0px 7px 9px #ff00004d;
+  }
+}
+
+.movie-footer-detail{
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px 0;
 }

@@ -47,7 +47,7 @@ export default {
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-          delay: 3000,
+          delay: 300000,
           disableOnInteraction: false
         },
         loop: true,
@@ -70,6 +70,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "style.scss";
 @import "assets/css/main.scss";
-@import "components/BasicLayout/style.scss";
+
 </style>

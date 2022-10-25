@@ -62,7 +62,7 @@ import BasicLayoutSearch from "@/components/BasicLayout/Search";
 import BasicLayoutNavBar from "@/components/BasicLayout/NavBar";
 import BasicLayoutLogo from "@/components/BasicLayout/Logo";
 import UserAvatar from "@/components/BasicLayout/UserAvatar";
-import BasicSlider from "@/components/BasicLayout/Slider";
+import BasicSlider from "@/components/SliderHeader/Slider";
 
 export default {
   name: "BasicLayout",
@@ -117,5 +117,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "assets/css/main.scss";
-@import "components/BasicLayout/style.scss";
+@import "components/SliderHeader/style.scss";
 </style>

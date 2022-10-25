@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-16">
     <PosterDetail/>
   </div>
 </template>
@@ -16,7 +16,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep layout-content{
-  margin: 0;
-}
 </style>
