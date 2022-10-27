@@ -58,13 +58,18 @@ export default {
   props: {
     numberSlidesPerView: {
       type: Number,
-      default: 7
+      default: 5
+    },
+    isLoop: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       swiperOption: {
         slidesPerView: this.numberSlidesPerView,
+        loop: this.isLoop,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
@@ -95,6 +100,12 @@ export default {
         /*TODO: when isEnd => call API */
         console.log("===swiper", this.swiper)
         console.log("===Call api")
+        this.slides.push({
+          id: 1,
+          title: `New Slide`,
+          image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
+        })
+        console.log(this.slides)
       }
       return isEndSlider
     },

@@ -21,13 +21,10 @@
         <div class="cate">
           <span class="cate__item">Genres 1</span>
         </div>
-        <div>
-          <div class="text-xl font-semibold">Actors</div>
-          <ActorList :actor-images="actorImages"/>
-        </div>
       </div>
     </div>
     <div class="container movie-footer-detail">
+      <ActorList :actor-images="actorImages"/>
       <MovieTrailer :movie="movie"/>
       <SimilarMovieDetail/>
     </div>
