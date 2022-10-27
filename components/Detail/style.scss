@@ -28,11 +28,15 @@
   }
 }
 
+::v-deep .layout-content .container{
+  max-width: initial;
+}
+
 .movie-content {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  max-width: 65%;
+  max-width: 65% !important;
   margin: -200px auto 64px auto;
   position: relative;
   z-index: 5;
@@ -75,6 +79,12 @@
         font-size: 0.8rem;
         font-weight: 600;
         background-color: #0f0f0f;
+
+        &:hover{
+          cursor: pointer;
+          background-color: #FFFFFF;
+          color: #0f0f0f;
+        }
       }
     }
   }

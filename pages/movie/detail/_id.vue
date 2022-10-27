@@ -16,4 +16,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//::v-deep .layout-content {
+//
+//  & .container {
+//    max-width: 0 !important;
+//  }
+//}
 </style>

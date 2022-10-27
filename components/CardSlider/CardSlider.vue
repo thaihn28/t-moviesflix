@@ -91,12 +91,10 @@ export default {
       return this.$refs.mySwiper.$swiper
     },
   },
-  mounted() {
-  },
   methods: {
     changeSwiperIndex() {
       const isEndSlider = this.swiper.isEnd
-      if (isEndSlider) {
+      if (isEndSlider && !this.isLoop) {
         /*TODO: when isEnd => call API */
         console.log("===swiper", this.swiper)
         console.log("===Call api")
@@ -110,7 +108,7 @@ export default {
       return isEndSlider
     },
     redirectToDetail(id) {
-      this.$router.push(`movie/detail/${id}`)
+      this.$router.push(`/movie/detail/${id}`)
     },
     handleUnlockMovie(){
       this.loading = false

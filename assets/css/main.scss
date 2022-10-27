@@ -21,11 +21,16 @@
   background-color: $black-body;
   color: $white-primary;
 }
+.layout-content {
 
+  & .container {
+    max-width: 100%;
+  }
+}
 // Header css
 .ant-layout-header {
   &.header {
-    @apply px-5 h-[80px];
+    @apply px-5 h-auto;
     background: none;
     z-index: 999;
     transition: height 0.3s ease, background-color 0.3s ease;

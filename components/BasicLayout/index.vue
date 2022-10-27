@@ -1,6 +1,6 @@
 <template>
   <a-spin size="large" :spinning="loading">
-    <a-layout class="layout-container">
+    <a-layout class="layout-container relative">
       <a-layout-header id="header-id" class="flex fixed header w-full items-center">
         <div class="inline-flex items-center justify-start flex-none" style="margin-left: 16px">
           <BasicLayoutLogo/>
@@ -16,10 +16,8 @@
         </div>
       </a-layout-header>
 
-      <a-layout-content>
-        <div>
+      <a-layout-content class="layout-content">
           <slot/>
-        </div>
       </a-layout-content>
 
       <a-layout-footer class="footer">
@@ -52,6 +50,7 @@
           </div>
         </div>
       </a-layout-footer>
+
     </a-layout>
   </a-spin>
 

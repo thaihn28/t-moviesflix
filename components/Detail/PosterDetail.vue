@@ -9,7 +9,7 @@
         <div class="title">Raya and the Last Dragon</div>
         <div class="btn-action flex gap-x-[16px]">
           <a-button class="ant-btn outline-2 font-semibold" size="large">Add To Favorite</a-button>
-          <a-button class="ant-btn primary-2 font-semibold" size="large" type="primary" danger>Watch Movie Now
+          <a-button class="ant-btn primary-2 font-semibold" size="large" type="primary" danger @click="watchMovie()">Watch Movie Now
           </a-button>
         </div>
         <p class="mx-4 text-base">
@@ -19,7 +19,7 @@
           fractured land and its divided people.
         </p>
         <div class="cate">
-          <span class="cate__item">Genres 1</span>
+          <span class="cate__item" @click="viewMoviesByCate()">Genres 1</span>
         </div>
       </div>
     </div>
@@ -55,8 +55,18 @@ export default {
         }
       }),
       movie: {
+        id: 1,
         trailer_url: 'https://www.youtube.com/embed/3UFWsEY8Hdc'
       }
+    }
+  },
+  methods: {
+    watchMovie(){
+      const movieID = this.$route.params.id
+      this.$router.push(`/movie/watching/${movieID}`)
+    },
+    viewMoviesByCate(){
+      this.$router.push(`/movie/category/${this.movie.id}`)
     }
   }
 }

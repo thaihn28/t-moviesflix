@@ -44,6 +44,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "assets/css/main.scss";
+.ant-result {
+  padding:128px 48px 32px;
+}
 
 .ant-result-title{
   color: white;
