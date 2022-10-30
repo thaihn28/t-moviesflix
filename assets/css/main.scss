@@ -132,6 +132,9 @@ h1, h2, h3, h4, h5, h6 {
 .ant-spin-nested-loading > div > .ant-spin .ant-spin-dot{
   top: 100%;
 }
+.ant-spin-container.ant-spin-blur{
+  height: 100vh;
+}
 
 
 // Custom swiper

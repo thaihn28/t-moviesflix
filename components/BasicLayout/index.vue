@@ -20,7 +20,7 @@
           <slot/>
       </a-layout-content>
 
-      <a-layout-footer class="footer">
+      <a-layout-footer v-if="!isAuthPage" class="footer">
         <div class="footer__content container">
           <div class="footer__content__logo">
             <div class="logo flex items-center justify-center">
@@ -62,6 +62,7 @@ import BasicLayoutNavBar from "@/components/BasicLayout/NavBar";
 import BasicLayoutLogo from "@/components/BasicLayout/Logo";
 import UserAvatar from "@/components/BasicLayout/UserAvatar";
 import BasicSlider from "@/components/SliderHeader/Slider";
+import auth_page from "@/middleware/authentication";
 
 export default {
   name: "BasicLayout",
@@ -84,6 +85,11 @@ export default {
     this.loading = true
   },
   computed: {
+    isAuthPage(){
+      const authPath = ['/login', '/sign-up']
+      const currentPath = this.$route.path
+      return authPath.includes(currentPath)
+    }
     // getErrorStatusCode() {
     //   const error = this.$store.getters['error/getError']
     //   return error?.statusCode !== 404

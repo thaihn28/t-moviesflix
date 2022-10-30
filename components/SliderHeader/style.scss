@@ -58,6 +58,7 @@
 
 ::v-deep .ant-btn {
   &.watch-primary-btn {
+    height: 36px;
     width: 150px;
     font-weight: 700;
     margin-right: 16px;
@@ -68,6 +69,7 @@
     }
   }
   &.watch-outline-btn{
+    height: 36px;
     width: 150px;
     font-weight: 700;
   }

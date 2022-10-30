@@ -37,7 +37,7 @@ export default {
   // Router configurations
   router: {
     middleware: [
-      // 'auth',
+      // 'authentication',
       // 'project',
     ]
   },

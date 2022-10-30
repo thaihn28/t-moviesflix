@@ -1,0 +1,39 @@
+.text-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(221 0 0/var(--tw-text-opacity));
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #DB0000;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.text-subText {
+  --tw-text-opacity: 1;
+  color: rgb(117 119 129/var(--tw-text-opacity));
+}
+
+
+::v-deep .ant-input {
+  @apply h-[44px] bg-slate-700 rounded-lg border-none text-white;
+
+  &:focus {
+    box-shadow: 0 0 0 2px rgba(164, 182, 197, 0.5);
+  }
+
+}
+::v-deep .ant-input-suffix {
+  right: 44px;
+
+  .anticon.anticon-close-circle.ant-input-clear-icon{
+    color: #FFFFFF;
+  }
+}
+
+.sign-up-background {
+  background: linear-gradient(90deg, #0f0f0f 11.2%,transparent 80%);
+  display: block;
+}
