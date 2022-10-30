@@ -14,6 +14,7 @@ import TopMovie from "@/components/TopMovie";
 import PopularTV from "@/components/PopularTV";
 import UpcomingMovie from "@/components/UpcomingMovie";
 import Slider from "@/components/SliderHeader/Slider";
+import {scrollToTop} from "@/utils/app_utils";
 
 export default {
   name: 'HomePage',
@@ -26,6 +27,9 @@ export default {
   data() {
     return {
     }
+  },
+  created() {
+    scrollToTop()
   }
 }
 </script>

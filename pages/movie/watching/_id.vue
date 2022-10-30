@@ -1,4 +1,5 @@
 <template>
+  <a-loading :loading="true">
   <div class="mx-16 mb-16 mt-32">
     <div class="grid grid-cols-4 gap-10 container">
       <div class="col-span-3 col-start-1 flex flex-col  flex-grow text-white">
@@ -10,11 +11,11 @@
           <div class="text-white md:text-[30px] text-[35px] font-semibold ">Movie Name</div>
           <div class="flex flex-row gap-4">
               <span class="flex flex-row gap-x-[4px]">
-                <icon-star/>
+                <icon-star class="mt-0.5"/>
                 <span class="text-bas">5.9</span>
               </span>
             <span class="flex flex-row gap-x-[4px]">
-                <icon-calendar/>
+                <icon-calendar class="mt-0.5 mr-0.5"/>
                 <span>2022</span>
               </span>
           </div>
@@ -46,17 +47,23 @@
       </div>
     </div>
   </div>
+  </a-loading>
 </template>
 
 <script>
 import iconStar from "assets/images/icons/iconStar";
 import iconCalendar from "assets/images/icons/iconCalendar";
+import {scrollToTop} from "@/utils/app_utils";
 
 export default {
   name: "WatchingMovie",
   components: {
     iconStar,
     iconCalendar,
+  },
+  created() {
+    scrollToTop()
+
   },
   methods: {
     viewOtherMovie(){

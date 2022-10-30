@@ -1,15 +1,25 @@
 <template>
-  <a-tabs :size="'large'">
-    <a-tab-pane key="1" tab="Series"></a-tab-pane>
-    <a-tab-pane key="2" tab="TV Shows" force-render></a-tab-pane>
-    <a-tab-pane key="3" tab="Categories"></a-tab-pane>
-    <a-tab-pane key="4" tab="Countries"></a-tab-pane>
+  <a-tabs :size="'large'" @change="changeTab">
+    <a-tab-pane key="series" tab="Series"></a-tab-pane>
+    <a-tab-pane key="tv-shows" tab="TV Shows" force-render></a-tab-pane>
+    <a-tab-pane key="categories" tab="Categories"></a-tab-pane>
+    <a-tab-pane key="countries" tab="Countries"></a-tab-pane>
   </a-tabs>
 </template>
 
 <script>
+import {scrollToTop} from "@/utils/app_utils";
+
 export default {
-  name: "BasicLayoutNavBar"
+  name: "BasicLayoutNavBar",
+  methods: {
+    changeTab(key){
+      this.$router.push(`/movie/explore/${key}`)
+    }
+  },
+  created() {
+    scrollToTop()
+  }
 }
 </script>
 
