@@ -68,14 +68,13 @@ export default {
       }
     },
     login() {
-      this.loggin = true
+      // this.loggin = true
+      this.$router.push('/login')
       // this.$auth.login()
     },
     async logout() {
       // await this.$router.push('/login')
-      this.$store.commit('common/setCurrentProject', {})
       // this.$cookies.removeAll()
-      this.$store.commit('common/setRecentlyServices', [])
       // await this.$auth.logout()
     },
     goToProfile() {
