@@ -37,6 +37,7 @@ export default {
   // Router configurations
   router: {
     middleware: [
+      'auth'
       // 'authentication',
       // 'project',
     ]
@@ -46,12 +47,53 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     '@nuxt/postcss8',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    // '@nuxtjs/eslint-module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
+
+  axios: {
+    baseURL: process.env.API_BASE_URL || 'http://t-movies-api.herokuapp.com/api'
+    // proxy: true
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          global: true,
+          required: true,
+          type: 'Bearer'
+        },
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'accessToken',
+          },
+          // user: {
+          //   url: 'accounts/me/',
+          //   method: 'get',
+          //   propertyName: 'users'
+          // },
+          logout: false
+        }
+      },
+      // watchLoggedIn: true,
+      // redirect: {
+      //   login: '/login',
+      //   logout: '/',
+      //   callback: '/login',
+      //   home: '/'
+      // }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
