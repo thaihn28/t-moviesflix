@@ -1,13 +1,10 @@
 <template>
   <div class="flex items-center">
-    <!--    <div v-if="loggedIn || true" class="leading-normal">-->
-    <div v-if="loggin" class="leading-normal">
+    <div v-if="loggedIn" class="leading-normal">
       <a-popover v-model="visible" trigger="click" placement="bottomRight">
-        <a-tooltip :title="`${userDisplayName}`" placement="bottom">
         <span class="inline-flex items-center cursor-pointer gap-4">
           <a-avatar src="https://joeschmoe.io/api/v1/random"/>
         </span>
-        </a-tooltip>
         <template slot="content">
           <div class="min-w-[144px] max-h-dropdown-header">
             <div
@@ -18,7 +15,6 @@
             </div>
             <div
               class="p-4 border-b border-gray-200 flex gap-3 items-center cursor-pointer hover:bg-[#dbdbdb] hover:rounded-t"
-              @click="goToProfile"
             >
               <IconRequestActive/>
               <span class="text-black">Profile Management</span>
@@ -34,7 +30,7 @@
         </template>
       </a-popover>
     </div>
-    <a-button type="primary" class="ant-btn font-medium primary-2" danger v-else @click="login">Sign in</a-button>
+    <a-button v-else type="primary" class="ant-btn font-medium primary-2" danger @click="login">Sign in</a-button>
   </div>
 </template>
 
@@ -45,27 +41,23 @@ export default {
   data() {
     return {
       visible: false,
-      userDisplayName: 'Thai Hoang',
-      loggin: false
     }
   },
-  // computed: {
-  //   loggedIn() {
-  //     return this.$auth.loggedIn
-  //   },
-  // },
-  // created() {
-  //   if (this.loggedIn)
-  //     this.getUserDisplayName()
-  // },
+  computed: {
+    loggedIn() {
+      return this.$auth.loggedIn
+    },
+    userDisplayName(){
+      return this.$auth.user.username
+    }
+  },
+  created() {
+    if (this.loggedIn)
+      this.getUserDisplayName()
+  },
   methods: {
-    async getUserDisplayName() {
-      const currentUser = await this.$repositories.currentUser.index({})
-      if (currentUser) {
-        this.userDisplayName = currentUser.display_name ? currentUser.display_name : ''
-      } else {
-        this.userDisplayName = ''
-      }
+    getUserDisplayName() {
+      return this.$auth.user.username
     },
     login() {
       // this.loggin = true
@@ -73,13 +65,9 @@ export default {
       // this.$auth.login()
     },
     async logout() {
-      // await this.$router.push('/login')
-      // this.$cookies.removeAll()
-      // await this.$auth.logout()
-    },
-    goToProfile() {
-      this.visible = false
-      this.$router.push(this.localeRoute('/user/profile'))
+      await this.$router.push('/login')
+      // this.$auth..removeAll()
+      await this.$auth.logout()
     },
   },
 }

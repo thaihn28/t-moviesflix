@@ -10,26 +10,32 @@
                   @click="redirectToSignUp">Sign up</span>
       </span>
       <a-form
-        :model="formLogin"
         class="relative mt-8 w-50% flex flex-col gap-y-[16px] md:w-[500px] z-40"
         name="basic"
+        :form="form"
         autocomplete="off"
-        @submit.pr.prevent="login"
+        @submit.prevent="login"
       >
         <a-form-item
           class="relative w-full text-white"
-          :rules="[{ required: true, message: 'Please input your username!' }]"
+          name="username"
         >
-          <a-input v-model:value="formLogin.username" :allow-clear="true" placeholder="Username or Email" show-count/>
+          <a-input
+            v-decorator="['username',
+            { rules: [{ required: true, message: 'Please input your username!' }] },
+        ]"
+            :allow-clear="true" placeholder="Username or Email" show-count/>
           <span class="w-[20px] h-[20px] text-white absolute top-0 right-4">
             <icon-user/>
           </span>
         </a-form-item>
         <a-form-item
           class="relative w-full text-white"
-          :rules="[{ required: true, message: 'Please input your password!' }]"
+          name="password"
         >
-          <a-input :type="isShowPass ? 'text' : 'password'" v-model:value="formLogin.password" :allow-clear="true"
+          <a-input :type="isShowPass ? 'text' : 'password'"
+                   v-decorator="['password', { rules: [{ required: true, message: 'Please input your password!' }] }]"
+                   :allow-clear="true"
                    placeholder="Password" show-count/>
           <span class="w-[20px] h-[20px] text-white absolute top-0 right-4" @click="showPass">
             <icon-hide-password v-if="isShowPass" class="cursor-pointer"/>
@@ -66,10 +72,7 @@ export default {
   components: {IconPassword, IconUser, IconHidePassword},
   data() {
     return {
-      formLogin: {
-        username: '',
-        password: ''
-      },
+      form: this.$form.createForm(this, {name: 'form_login'}),
       isShowPass: false
     }
   },
@@ -77,44 +80,36 @@ export default {
     showPass() {
       this.isShowPass = !this.isShowPass
     },
-    redirectToSignUp(){
+    redirectToSignUp() {
       this.$router.push('/sign-up')
     },
-    async login() {
-      try {
-        const payload = {
-          username: this.formLogin.username,
-          password: this.formLogin.password
-        }
-        // const response = await this.$axios.post('/auth/login', payload)
-        const response = await this.$auth.loginWith('local', { data: payload })
-          .then(() => {
+    login() {
+      this.form.validateFields(async (err, values) => {
+        if (!err) {
+          try {
+            const payload = {
+              username: values.username,
+              password: values.password
+            }
+            const response = await this.$axios.post('/api/auth/login', payload)
             this.$notification.success({
               message: 'You are successfully logged in!',
               placement: 'topRight',
               duration: 5
             })
-          })
-        // this.$auth.setUser(response.data)
-        this.$router.push('/')
+            await this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
+            await this.$auth.setUser(response.data)
+            await this.$router.push('/')
 
-        console.log(response)
-        // this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
-
-        // this.$notification.success({
-        //   message: 'You are successfully logged in!',
-        //   placement: 'topRight',
-        //   duration: 5
-        // })
-        // await this.$auth.strategy.setToken()
-      } catch (e) {
-        this.$notification.error({
-          message: 'Login failed! Please check your username/password again',
-          placement: 'topRight',
-          duration: 5
-        })
-      }
-
+          } catch (e) {
+            this.$notification.error({
+              message: 'Login failed! Please check your username/password again',
+              placement: 'topRight',
+              duration: 5
+            })
+          }
+        }
+      });
     }
   }
 }

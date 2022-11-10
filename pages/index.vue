@@ -17,6 +17,7 @@ import Slider from "@/components/SliderHeader/Slider";
 import {scrollToTop} from "@/utils/app_utils";
 
 export default {
+  middleware: ['auth'],
   name: 'HomePage',
   components: {
     TopMovie,
@@ -28,9 +29,27 @@ export default {
     return {
     }
   },
+  computed: {
+  },
   created() {
+    this.test()
     scrollToTop()
-  }
+  },
+  methods: {
+    async test(){
+      try {
+        console.log('===login', this.$store.state.auth.user)
+        const res = await this.$axios.get('/api/v1/users')
+        console.log(res)
+      }catch (e) {
+        this.$notification.error({
+          message: e.response.data,
+          placement: 'topRight',
+          duration: 5
+        })
+      }
+    }
+  },
 }
 </script>
 

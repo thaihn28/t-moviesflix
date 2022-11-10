@@ -25,6 +25,14 @@
   }
 
 }
+::v-deep .ant-form-explain{
+  @apply mt-1 font-extrabold text-[#DB0000];
+}
+
+::v-deep .has-error .ant-input-affix-wrapper .ant-input, .has-error .ant-input-affix-wrapper .ant-input:hover{
+  @apply bg-slate-700 border border-solid border-[#DB0000];
+}
+
 ::v-deep .ant-input-suffix {
   right: 44px;
 

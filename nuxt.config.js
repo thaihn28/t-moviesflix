@@ -37,7 +37,7 @@ export default {
   // Router configurations
   router: {
     middleware: [
-      'auth'
+      // 'auth'
       // 'authentication',
       // 'project',
     ]
@@ -58,7 +58,7 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.API_BASE_URL || 'http://t-movies-api.herokuapp.com/api'
+    baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com',
     // proxy: true
   },
 
@@ -66,23 +66,21 @@ export default {
     strategies: {
       local: {
         token: {
-          property: 'token',
+          property: 'accessToken',
           global: true,
           required: true,
           type: 'Bearer'
         },
         endpoints: {
           login: {
-            url: '/auth/login',
+            url: '/api/auth/login',
             method: 'post',
             propertyName: 'accessToken',
           },
-          // user: {
-          //   url: 'accounts/me/',
-          //   method: 'get',
-          //   propertyName: 'users'
-          // },
-          logout: false
+          user: {
+            property: false,
+            autoFetch: true
+          },
         }
       },
       // watchLoggedIn: true,
