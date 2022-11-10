@@ -15,6 +15,7 @@ import PopularTV from "@/components/PopularTV";
 import UpcomingMovie from "@/components/UpcomingMovie";
 import Slider from "@/components/SliderHeader/Slider";
 import {scrollToTop} from "@/utils/app_utils";
+import { mapActions } from 'vuex'
 
 export default {
   middleware: ['auth'],
@@ -33,9 +34,13 @@ export default {
   },
   created() {
     this.test()
+    this.getAllMovies()
     scrollToTop()
   },
   methods: {
+    ...mapActions(
+      {getAllMovies: 'movie/getAllMovies'}
+    ),
     async test(){
       try {
         console.log('===login', this.$store.state.auth.user)

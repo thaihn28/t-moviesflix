@@ -27,6 +27,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/repositories',
     '@/plugins/antd-ui',
     '@/plugins/swiper'
   ],
@@ -58,7 +59,7 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com',
+    baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com/api',
     // proxy: true
   },
 
@@ -73,7 +74,7 @@ export default {
         },
         endpoints: {
           login: {
-            url: '/api/auth/login',
+            url: '/auth/login',
             method: 'post',
             propertyName: 'accessToken',
           },
