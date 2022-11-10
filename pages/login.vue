@@ -86,14 +86,32 @@ export default {
           username: this.formLogin.username,
           password: this.formLogin.password
         }
-        const response = await this.$axios.post('/auth/login', payload)
+        // const response = await this.$axios.post('/auth/login', payload)
+        const response = await this.$auth.loginWith('local', { data: payload })
+          .then(() => {
+            this.$notification.success({
+              message: 'You are successfully logged in!',
+              placement: 'topRight',
+              duration: 5
+            })
+          })
+        // this.$auth.setUser(response.data)
+        this.$router.push('/')
+
         console.log(response)
+        // this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
+
+        // this.$notification.success({
+        //   message: 'You are successfully logged in!',
+        //   placement: 'topRight',
+        //   duration: 5
+        // })
         // await this.$auth.strategy.setToken()
       } catch (e) {
         this.$notification.error({
-          message: e,
+          message: 'Login failed! Please check your username/password again',
           placement: 'topRight',
-          duration: 2
+          duration: 5
         })
       }
 
