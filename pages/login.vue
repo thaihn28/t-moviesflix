@@ -76,6 +76,9 @@ export default {
       isShowPass: false
     }
   },
+  created() {
+    console.log(this.$auth.$storage.$state, '===test')
+  },
   methods: {
     showPass() {
       this.isShowPass = !this.isShowPass
@@ -91,14 +94,21 @@ export default {
               username: values.username,
               password: values.password
             }
-            const response = await this.$axios.post('/api/auth/login', payload)
+            const response = await this.$auth.loginWith('local', {
+              data: payload
+            })
             this.$notification.success({
               message: 'You are successfully logged in!',
               placement: 'topRight',
               duration: 5
             })
+            // await this.$store.commit("users/setUsers", response.data)
             await this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
-            await this.$auth.setUser(response.data)
+            if(response){
+              await this.$auth.setUser(response?.data)
+              this.$auth.$storage.setUniversal('auth_loggedIn', this.$auth.loggedIn)
+
+            }
             await this.$router.push('/')
 
           } catch (e) {

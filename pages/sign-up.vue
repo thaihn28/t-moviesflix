@@ -126,7 +126,7 @@ export default {
               username: values.username,
               password: values.password
             }
-            const response = await this.$axios.post('/api/auth/sign-up', payload)
+            const response = await this.$axios.post('/auth/sign-up', payload)
             this.$notification.success({
               message: response.data,
               placement: 'topRight',

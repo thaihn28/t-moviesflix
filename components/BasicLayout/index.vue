@@ -62,7 +62,7 @@ import BasicLayoutNavBar from "@/components/BasicLayout/NavBar";
 import BasicLayoutLogo from "@/components/BasicLayout/Logo";
 import UserAvatar from "@/components/BasicLayout/UserAvatar";
 import BasicSlider from "@/components/SliderHeader/Slider";
-import auth_page from "@/middleware/auth";
+import auth_page from "@/middleware/authenticated";
 
 export default {
   name: "BasicLayout",

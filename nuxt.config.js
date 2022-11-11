@@ -29,7 +29,8 @@ export default {
   plugins: [
     '@/plugins/repositories',
     '@/plugins/antd-ui',
-    '@/plugins/swiper'
+    '@/plugins/swiper',
+    '@/plugins/persistedState'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +39,7 @@ export default {
   // Router configurations
   router: {
     middleware: [
-      // 'auth'
+      // 'authenticated'
       // 'authentication',
       // 'project',
     ]
@@ -57,10 +58,26 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
+  //
+  // axios: {
+  //   baseURL: '/',
+  //   proxy: true,
+  //   credentials: false,
+  //   retry: { retries: 3 },
+  //   debug: true
+  // },
+  //
+  // proxy: {
+  //   '/api/': {
+  //     target: process.env.API_BASE_URL,
+  //     pathRewrite: { '^/api/': '' },
+  //   }
+  // },
 
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com/api',
-    // proxy: true
+    baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com/',
+    proxyHeaders: false,
+    credentials: false,
   },
 
   auth: {
@@ -74,23 +91,28 @@ export default {
         },
         endpoints: {
           login: {
-            url: '/auth/login',
+            url: 'api/auth/login',
             method: 'post',
-            propertyName: 'accessToken',
+            // propertyName: 'accessToken',
           },
           user: {
-            property: false,
-            autoFetch: true
+            url: 'api/auth/login',
+            method: "GET",
+            propertyName: 'data',
           },
+        },
+        user: {
+          property: false, // set this to false if your user endpoint return user data directly
+          autoFetch: false // set this to false if you are using setUser function
         }
       },
-      // watchLoggedIn: true,
-      // redirect: {
-      //   login: '/login',
-      //   logout: '/',
-      //   callback: '/login',
-      //   home: '/'
-      // }
+    },
+    watchLoggedIn: true,
+    redirect: {
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: '/'
     }
   },
 

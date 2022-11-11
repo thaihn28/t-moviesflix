@@ -35,6 +35,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'UserAvatar',
   components: {},
@@ -51,22 +52,12 @@ export default {
       return this.$auth.user.username
     }
   },
-  created() {
-    if (this.loggedIn)
-      this.getUserDisplayName()
-  },
   methods: {
-    getUserDisplayName() {
-      return this.$auth.user.username
-    },
     login() {
-      // this.loggin = true
       this.$router.push('/login')
-      // this.$auth.login()
     },
     async logout() {
       await this.$router.push('/login')
-      // this.$auth..removeAll()
       await this.$auth.logout()
     },
   },

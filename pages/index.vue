@@ -18,7 +18,7 @@ import {scrollToTop} from "@/utils/app_utils";
 import { mapActions } from 'vuex'
 
 export default {
-  middleware: ['auth'],
+  middleware: 'auth',
   name: 'HomePage',
   components: {
     TopMovie,
@@ -34,18 +34,17 @@ export default {
   },
   created() {
     this.test()
-    this.getAllMovies()
     scrollToTop()
   },
   methods: {
     ...mapActions(
-      {getAllMovies: 'movie/getAllMovies'}
+      {getAllMovies: 'movie/nuxtServerInit'}
     ),
     async test(){
       try {
-        console.log('===login', this.$store.state.auth.user)
-        const res = await this.$axios.get('/api/v1/users')
-        console.log(res)
+        // console.log('===login', this.$store.state.auth.user)
+        // const res = await this.$axios.get('/v1/users')
+        // console.log(res)
       }catch (e) {
         this.$notification.error({
           message: e.response.data,

@@ -9,7 +9,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async getAllMovies({commit}){
-    console.log(commit)
+  nuxtServerInit(vueContext, context){
+    console.log(vueContext, '===vue context')
+    console.log(context, '===context')
   }
 }
