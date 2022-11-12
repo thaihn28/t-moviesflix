@@ -18,7 +18,7 @@ import {scrollToTop} from "@/utils/app_utils";
 import { mapActions } from 'vuex'
 
 export default {
-  middleware: 'auth',
+  middleware: 'authenticated',
   name: 'HomePage',
   components: {
     TopMovie,

@@ -76,9 +76,6 @@ export default {
       isShowPass: false
     }
   },
-  created() {
-    console.log(this.$auth.$storage.$state, '===test')
-  },
   methods: {
     showPass() {
       this.isShowPass = !this.isShowPass
@@ -86,7 +83,7 @@ export default {
     redirectToSignUp() {
       this.$router.push('/sign-up')
     },
-    login() {
+   async login() {
       this.form.validateFields(async (err, values) => {
         if (!err) {
           try {
@@ -97,20 +94,18 @@ export default {
             const response = await this.$auth.loginWith('local', {
               data: payload
             })
-            this.$notification.success({
+            await this.$notification.success({
               message: 'You are successfully logged in!',
               placement: 'topRight',
               duration: 5
             })
-            // await this.$store.commit("users/setUsers", response.data)
-            await this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
             if(response){
+              await this.$store.commit("user/setUser", response.data)
+              await this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
               await this.$auth.setUser(response?.data)
-              this.$auth.$storage.setUniversal('auth_loggedIn', this.$auth.loggedIn)
-
+              await this.$auth.$storage.setUniversal('auth_loggedIn', this.$auth.loggedIn)
+              await this.$router.push('/')
             }
-            await this.$router.push('/')
-
           } catch (e) {
             this.$notification.error({
               message: 'Login failed! Please check your username/password again',

@@ -16,14 +16,13 @@
             <div
               class="p-4 border-b border-gray-200 flex gap-3 items-center cursor-pointer hover:bg-[#dbdbdb] hover:rounded-t"
             >
-              <IconRequestActive/>
               <span class="text-black">Profile Management</span>
             </div>
             <div
               class="p-4 flex items-center gap-3 cursor-pointer hover:bg-[#dbdbdb] hover:rounded-b"
               @click="logout"
             >
-              <IconLogout/>
+              <icon-logout/>
               <span class="text-black">Sign Out</span>
             </div>
           </div>
@@ -35,10 +34,13 @@
 </template>
 
 <script>
+import iconLogout from "assets/images/icons/iconLogout";
 
 export default {
   name: 'UserAvatar',
-  components: {},
+  components: {
+    iconLogout
+  },
   data() {
     return {
       visible: false,
@@ -46,18 +48,23 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.$auth.loggedIn
+      const user = this.$store.getters["user/getUser"]
+      return user
     },
     userDisplayName(){
-      return this.$auth.user.username
+      const username = this.$store.getters["user/getUser"].username
+      return username
     }
   },
   methods: {
     login() {
       this.$router.push('/login')
+
     },
     async logout() {
       await this.$router.push('/login')
+      await this.$auth.$storage.removeUniversal('auth_loggedIn')
+      await this.$store.commit('user/removeUser', null)
       await this.$auth.logout()
     },
   },
