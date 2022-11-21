@@ -15,7 +15,7 @@ import PopularTV from "@/components/PopularTV";
 import UpcomingMovie from "@/components/UpcomingMovie";
 import Slider from "@/components/SliderHeader/Slider";
 import {scrollToTop} from "@/utils/app_utils";
-import { mapActions } from 'vuex'
+// import { mapActions } from 'vuex'
 
 export default {
   middleware: 'authenticated',
@@ -35,22 +35,22 @@ export default {
   created() {
     this.test()
     scrollToTop()
+    // this.$store.dispatch('movie/nuxtServerInit')
   },
   methods: {
-    ...mapActions(
-      {getAllMovies: 'movie/nuxtServerInit'}
-    ),
+    // ...mapActions(
+    //   { fetchAllMovie: 'movie/nuxtServerInit' }
+    // ),
     async test(){
       try {
-        // console.log('===login', this.$store.state.auth.user)
-        // const res = await this.$axios.get('/v1/users')
-        // console.log(res)
+        const res = await this.$repositories.movieRepo.all()
+        console.log(res, '===data')
       }catch (e) {
-        this.$notification.error({
-          message: e.response.data,
-          placement: 'topRight',
-          duration: 5
-        })
+        // this.$notification.error({
+        //   message: 'Login failed! Please check your username/password again',
+        //   placement: 'topRight',
+        //   duration: 5
+        // })
       }
     }
   },

@@ -27,10 +27,10 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/repositories',
     '@/plugins/antd-ui',
     '@/plugins/swiper',
-    '@/plugins/persistedState'
+    '@/plugins/persistedState',
+    '~/plugins/repositories.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -76,11 +76,16 @@ export default {
 
   axios: {
     baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com/',
-    proxyHeaders: false,
-    credentials: false,
+    // proxyHeaders: false,
+    // credentials: false,
   },
 
   auth: {
+    cookie: {
+      options: {
+        secure: true
+      }
+    },
     strategies: {
       local: {
         token: {

@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center">
     <div v-if="loggedIn" class="leading-normal">
-      <a-popover v-model="visible" trigger="click" placement="bottomRight">
+      <a-popover trigger="click" placement="bottomRight">
         <span class="inline-flex items-center cursor-pointer gap-4">
           <a-avatar src="https://joeschmoe.io/api/v1/random"/>
         </span>
@@ -41,11 +41,6 @@ export default {
   components: {
     iconLogout
   },
-  data() {
-    return {
-      visible: false,
-    }
-  },
   computed: {
     loggedIn() {
       const user = this.$store.getters["user/getUser"]
@@ -59,7 +54,6 @@ export default {
   methods: {
     login() {
       this.$router.push('/login')
-
     },
     async logout() {
       await this.$router.push('/login')

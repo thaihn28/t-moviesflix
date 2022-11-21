@@ -1,5 +1,5 @@
-import MovieRepository from "@/repositories/movie/MovieRepository";
+import MovieRepository from "~/repositories/movie/MovieRepository";
 
 export default ($axios) => ({
-  movie: MovieRepository($axios)
+  movieRepo: MovieRepository($axios)
 })

@@ -97,7 +97,7 @@ export default {
             await this.$notification.success({
               message: 'You are successfully logged in!',
               placement: 'topRight',
-              duration: 5
+              duration: 3
             })
             if(response){
               await this.$store.commit("user/setUser", response.data)
