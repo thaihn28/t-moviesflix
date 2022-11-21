@@ -1,9 +1,9 @@
 <template>
-  <a-loading :loading="true">
+<!--  <a-spin :loading="loading">-->
   <div class="mb-16">
     <PosterDetail/>
   </div>
-  </a-loading>
+<!--  </a-spin>-->
 </template>
 
 <script>
@@ -14,6 +14,11 @@ export default {
   name: "MovieDetail",
   components: {
     PosterDetail
+  },
+  data(){
+    return{
+      loading: false
+    }
   },
   created() {
     scrollToTop()

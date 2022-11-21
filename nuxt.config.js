@@ -6,13 +6,13 @@ export default {
       lang: 'en'
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      {charset: 'utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {hid: 'description', name: 'description', content: ''},
+      {name: 'format-detection', content: 'telephone=no'}
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
 
@@ -92,9 +92,10 @@ export default {
         endpoints: {
           login: {
             url: 'api/auth/login',
-            method: 'post',
+            method: 'POST',
             // propertyName: 'accessToken',
           },
+          logout: {url: '/api/auth/logout', method: 'GET'},
           user: {
             url: 'api/auth/login',
             method: "GET",

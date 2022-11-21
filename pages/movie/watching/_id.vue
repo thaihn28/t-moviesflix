@@ -1,5 +1,5 @@
 <template>
-  <a-loading :loading="true">
+<!--  <a-spin :loading="loading">-->
   <div class="mx-16 mb-16 mt-32">
     <div class="grid grid-cols-4 gap-10 container">
       <div class="col-span-3 col-start-1 flex flex-col  flex-grow text-white">
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  </a-loading>
+<!--  </a-spin>-->
 </template>
 
 <script>
@@ -60,6 +60,11 @@ export default {
   components: {
     iconStar,
     iconCalendar,
+  },
+  data(){
+    return{
+      loading: false
+    }
   },
   created() {
     scrollToTop()

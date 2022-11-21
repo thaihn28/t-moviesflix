@@ -1,5 +1,5 @@
 <template>
-  <a-loading :loading="true">
+<!--  <a-spin :loading="loading">-->
   <div class="mx-0 md:mx-16 mb-16 mt-32 flex flex-col items-center">
     <div class="w-full h-auto gap-3 md:gap-7 justify-center flex flex-row flex-wrap">
       <div v-for="item in cards" :key="item" class="md:w-[250px] w-[48%] flex-shrink-0">
@@ -31,7 +31,7 @@
       <Pagination/>
     </div>
   </div>
-  </a-loading>
+<!--  </a-spin>-->
 </template>
 
 <script>
@@ -45,6 +45,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       cards: Array.from({length: 10}, (_, i) => (i)),
     }
   },

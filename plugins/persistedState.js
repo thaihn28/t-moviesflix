@@ -5,7 +5,7 @@ import cookie from 'cookie';
 export default ({ store, req }) => {
   createPersistedState({
     key: 'auth_user',
-    paths: ['users'],
+    paths: ['user'],
     storage: {
       getItem: (key) => {
         // See https://nuxtjs.org/guide/plugins/#using-process-flags
@@ -22,7 +22,7 @@ export default ({ store, req }) => {
       },
       // Please see https://github.com/js-cookie/js-cookie#json, on how to handle JSON.
       setItem: (key, value) =>
-        Cookies.set(key, value, { expires: 365, secure: false }),
+        Cookies.set(key, value, { expires: 3, secure: false }),
       removeItem: key => Cookies.remove(key)
     }
   })(store);
