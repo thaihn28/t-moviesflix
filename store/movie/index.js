@@ -1,32 +1,44 @@
+const resource = 'api/v1/movies'
+
 export const state = () => ({
-  movies: []
+  movies: [],
+  movie: {}
 })
 
 export const mutations = {
-  SET_MOVIES(state, movies){
+  SET_MOVIES(state, movies) {
     state.movies = movies
+  },
+  SET_MOVIE(state, movie){
+    state.movie = movie
   }
 }
 
 export const actions = {
-  async nuxtServerInit({commit}){
+  async fetchingMovies({commit}) {
     try {
-      const res = await this.$repositories.movie.all()
-      console.log(res, '===data')
-      commit('movie/SET_MOVIES', res.data)
-    }catch (e) {
-      // this.$notification.error({
-      //   message: e.response.data,
-      //   placement: 'topRight',
-      //   duration: 2
-      // })
-      console.log(e)
-  }
+      const res = await this.$axios.$get(resource)
+      commit('SET_MOVIES', res.content)
+    } catch (e) {
+      console.error(e.response.data)
+    }
+  },
+  async fetchingMovieDetail({commit}, slug) {
+    try {
+      const res = await this.$axios.$get(`${resource}/${slug}`)
+      commit('SET_MOVIE', res)
+    }
+    catch (e) {
+      console.error(e.response.data)
+    }
   }
 }
 
 export const getters = {
-  getAllMovies(state){
+  getAllMovies(state) {
     return state.movies
+  },
+  getMovieDetail(state) {
+    return state.movie
   }
 }

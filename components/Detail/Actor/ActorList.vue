@@ -4,7 +4,7 @@
     <div class="actors">
       <div class="actors__item" v-for="item in actorImages" :key="item.id">
         <div class="h-[240px] w-[180px] bg-cover bg-center bg-no-repeat object-center object-cover rounded-lg"
-             :style="`background-image: url(${item.image})`"></div>
+             :style="`background-image: url(${item.avatar})`"></div>
         <p class="actors__item__name">{{ item.name }}</p>
       </div>
     </div>

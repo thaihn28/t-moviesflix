@@ -1,12 +1,12 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-    <swiper-slide v-for="(item,idx) in images" :key="idx">
-      <img class="w-full h-full" :src="item.image"/>
+    <swiper-slide v-for="(item,idx) in slideMovies" :key="idx">
+      <img class="w-full h-full object-cover object-center" :src="item.posterURL"/>
       <div
         class="content w-full h-full absolute top-0 mb-5 text-white items-center justify-center drop-shadow-md flex flex-row gap-y-5 gap-x-32">
         <div class="max-w-2xl gap-y-8 h-full flex items-center justify-center flex-col">
-          <h2 class="text-7xl font-bold text-left">{{ item.title }}</h2>
-          <span class="font-bold text-justify">{{ item.overview }}</span>
+          <div class="w-full text-7xl font-bold text-left">{{ item.name }}</div>
+          <span class="font-bold text-justify">{{ item.content }}</span>
           <div class="w-full gap-2 flex-row flex-wrap">
             <a-button
               class="ant-btn primary-2 watch-primary-btn"
@@ -18,12 +18,13 @@
             <a-button
               shape="round"
               class="ant-btn outline-2 watch-outline-btn"
+              @click="watchMovieTrailer(item)"
             >
               Watch trailer
             </a-button>
           </div>
         </div>
-        <img src="https://www.themoviedb.org/t/p/original/lXthmT7NOhTJaugcodhdkXjyWZH.jpg" alt=""
+        <img :src="item.thumbURL" alt=""
              class="rounded-3xl h-[480px] w-[360px] object-cover object-center"/>
       </div>
     </swiper-slide>
@@ -40,6 +41,13 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  props: {
+    slideMovies: {
+      type: Array,
+      required: true,
+      default: () => []
+    },
+  },
   data() {
     return {
       swiperOption: {
@@ -47,10 +55,10 @@ export default {
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-          delay: 5000,
+          delay: 10000,
           disableOnInteraction: false
         },
-        loop: true,
+        loop: false,
         pagination: {
           el: '.swiper-pagination',
           clickable: true
@@ -64,6 +72,11 @@ export default {
           image: 'https://www.themoviedb.org/t/p/original/2RHjd10wqv57xYzZkNK8Sl09Ddt.jpg'
         }
       }),
+    }
+  },
+  methods: {
+    watchMovieTrailer(movie){
+      this.$emit('watch-trailer', movie)
     }
   }
 }

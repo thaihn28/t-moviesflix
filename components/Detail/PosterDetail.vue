@@ -1,30 +1,27 @@
 <template>
   <div>
-    <div class="banner" :style="`background-image: url(${img})`"></div>
+    <div class="banner" :style="`background-image: url(${movie.posterURL})`"></div>
     <div class="mb-16 mx-16 movie-content container">
       <div class="movie-content__poster">
-        <div class="movie-content__poster__img" :style="`background-image: url(${img2})`"></div>
+        <div class="movie-content__poster__img" :style="`background-image: url(${movie.thumbURL})`"></div>
       </div>
       <div class="movie-content__info">
-        <div class="title">Raya and the Last Dragon</div>
+        <div class="title">{{movie.name}}</div>
         <div class="btn-action flex gap-x-[16px]">
           <a-button class="ant-btn outline-2 font-semibold" size="large">Add To Favorite</a-button>
-          <a-button class="ant-btn primary-2 font-semibold" size="large" type="primary" danger @click="watchMovie()">Watch Movie Now
+          <a-button class="ant-btn primary-2 font-semibold" size="large" type="primary" danger @click="watchMovie">Watch Movie Now
           </a-button>
         </div>
         <p class="mx-4 text-base">
-          Long ago, in the fantasy world of Kumandra, humans and dragons lived together in harmony. But when an evil
-          force threatened the land, the dragons sacrificed themselves to save humanity. Now, 500 years later, that same
-          evil has returned and it’s up to a lone warrior, Raya, to track down the legendary last dragon to restore the
-          fractured land and its divided people.
+          {{movie.content}}
         </p>
-        <div class="cate">
-          <span class="cate__item" @click="viewMoviesByCate()">Genres 1</span>
+        <div class="cate" v-for="item in movie.categories" :key="item.id">
+          <span class="cate__item" @click="viewMoviesByCate()">{{item.name}}</span>
         </div>
       </div>
     </div>
     <div class="container movie-footer-detail">
-      <ActorList :actor-images="actorImages"/>
+      <ActorList :actor-images="movie.actors"/>
       <MovieTrailer :movie="movie"/>
       <SimilarMovieDetail/>
     </div>
@@ -43,27 +40,22 @@ export default {
     MovieTrailer,
     SimilarMovieDetail
   },
+  props: {
+    movie: {
+      type: Object,
+      required: true,
+      default: () => undefined
+    }
+  },
   data() {
     return {
-      img: 'https://www.themoviedb.org/t/p/original/3emtmbHAp145frh3Pps1bZCCEHY.jpg',
-      img2: 'https://www.themoviedb.org/t/p/original/eKqI962WWxtLo4WROaTuqzaXUbR.jpg',
-      actorImages: Array.from({length: 5}, (_, i) => {
-        return {
-          index: i,
-          name: `Name ${i}`,
-          image: 'https://image.tmdb.org/t/p/w500//19VV7frhrcSZqfszhCMlNztKfPZ.jpg'
-        }
-      }),
-      movie: {
-        id: 1,
-        trailer_url: 'https://www.youtube.com/embed/3UFWsEY8Hdc'
-      }
+
     }
   },
   methods: {
     watchMovie(){
-      const movieID = this.$route.params.id
-      this.$router.push(`/movie/watching/${movieID}`)
+      const slug = this.$route.params.slug
+      this.$router.push(`/movie/watching/${slug}`)
     },
     viewMoviesByCate(){
       this.$router.push(`/movie/category/${this.movie.id}`)

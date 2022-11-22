@@ -28,9 +28,10 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/antd-ui',
+    { src: '~/plugins/repositories.js', mode: 'client' },
     '@/plugins/swiper',
     '@/plugins/persistedState',
-    '~/plugins/repositories.js',
+    // '~/plugins/repositories.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -58,27 +59,28 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next'
   ],
-  //
-  // axios: {
-  //   baseURL: '/',
-  //   proxy: true,
-  //   credentials: false,
-  //   retry: { retries: 3 },
-  //   debug: true
-  // },
-  //
-  // proxy: {
-  //   '/api/': {
-  //     target: process.env.API_BASE_URL,
-  //     pathRewrite: { '^/api/': '' },
-  //   }
-  // },
 
   axios: {
     baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com/',
-    // proxyHeaders: false,
-    // credentials: false,
+    retry: { retries: 3 },
+    // proxy: true
   },
+
+  // proxy: {
+  //   '/api/': { target: process.env.API_BASE_URL, pathRewrite: {'^/api/': ''} }
+  // },
+  //
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     browserBaseURL: process.env.API_BASE_URL
+  //   }
+  // },
+  //
+  // privateRuntimeConfig: {
+  //   axios: {
+  //     baseURL: process.env.API_BASE_URL
+  //   }
+  // },
 
   auth: {
     cookie: {

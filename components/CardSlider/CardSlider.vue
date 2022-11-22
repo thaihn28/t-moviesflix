@@ -1,12 +1,12 @@
 <template>
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
-      <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
+      <swiper-slide v-for="(item,idx) in movies" :key="idx" class="slide">
         <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
           <div class="card-wrapper z-50 relative w-full h-full flex flex-col gap-y-2 ">
             <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
-              <img class="w-full h-full rounded-xl object-cover object-center" :src="item.image" alt="">
+              <img class="w-full h-full rounded-xl object-cover object-center" :src="item.thumbURL" alt="">
               <div class="card-info">
-                <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.id)">
+                <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.slug)">
                   <span class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-eye" viewBox="0 0 16 16">
@@ -30,13 +30,12 @@
                 </a-button>
               </div>
             </div>
-            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold">My Hero Academia: World Heroes's Mission World Heroes's Mission {{
-                idx
-              }}
+            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold">
+              {{item.name}}
             </span>
           </div>
           <div class="absolute inset-0 p-3">
-            <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.image" alt="">
+            <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.thumbURL" alt="">
             <div class="layer absolute inset-0 md:backdrop-blur-md rounded-xl bg-[#000000] bg-opacity-40"></div>
           </div>
         </div>
@@ -48,6 +47,7 @@
 <script>
 import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
+import {mapGetters} from "vuex";
 
 export default {
   name: "CardSliderComponent",
@@ -56,6 +56,10 @@ export default {
     SwiperSlide,
   },
   props: {
+    movies: {
+      type: Array,
+      default: () => []
+    },
     numberSlidesPerView: {
       type: Number,
       default: 5
@@ -98,17 +102,16 @@ export default {
         /*TODO: when isEnd => call API */
         console.log("===swiper", this.swiper)
         console.log("===Call api")
-        this.slides.push({
-          id: 1,
-          title: `New Slide`,
-          image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
-        })
-        console.log(this.slides)
+        // this.slides.push({
+        //   id: 1,
+        //   title: `New Slide`,
+        //   image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
+        // })
       }
       return isEndSlider
     },
-    redirectToDetail(id) {
-      this.$router.push(`/movie/detail/${id}`)
+    redirectToDetail(slug) {
+      this.$router.push(`/movie/detail/${slug}`)
     },
     handleUnlockMovie(){
       this.loading = false

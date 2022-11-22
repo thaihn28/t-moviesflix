@@ -1,23 +1,33 @@
 <template>
-<!--  <a-spin :loading="loading">-->
   <div class="mb-16">
-    <PosterDetail/>
+    <PosterDetail :movie="movie"/>
   </div>
-<!--  </a-spin>-->
 </template>
 
 <script>
 import PosterDetail from "@/components/Detail/PosterDetail";
 import {scrollToTop} from "@/utils/app_utils";
+import {mapGetters} from "vuex";
 
 export default {
   name: "MovieDetail",
   components: {
     PosterDetail
   },
+  async fetch ({ store, params }) {
+    await store.dispatch('movie/fetchingMovieDetail', params.slug)
+  },
   data(){
     return{
       loading: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getMovieDetail: 'movie/getMovieDetail'
+    }),
+    movie(){
+      return this.getMovieDetail
     }
   },
   created() {

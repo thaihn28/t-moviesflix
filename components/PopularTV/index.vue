@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">Popular TV</h2>
+    <h2 class="text-xl font-bold text-white" style="margin-bottom: 16px">{{title}}</h2>
     <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
-      <swiper-slide v-for="(item,idx) in slides" :key="idx" class="slide">
+      <swiper-slide v-for="(item,idx) in popularTv" :key="idx" class="slide">
         <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
           <div class="card-wrapper z-50 relative w-full h-full flex flex-col gap-y-2 ">
             <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
-              <img class="w-full h-full rounded-xl object-cover object-center" :src="item.image" alt="">
+              <img class="w-full h-full rounded-xl object-cover object-center" :src="item.thumbURL" alt="">
               <div class="card-info">
                 <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.id)">
                   <span class="mr-[4px] mt-[2px]">
@@ -32,12 +32,12 @@
                 </a-button>
               </div>
             </div>
-            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold mt-2">My Hero Academia: World Heroes's Mission World Heroes's Mission {{
-                idx
-              }}</span>
+            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold mt-2">
+              {{item.name}}
+            </span>
           </div>
           <div class="absolute inset-0 p-3">
-            <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.image" alt="">
+            <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.thumbURL" alt="">
             <div class="layer absolute inset-0 md:backdrop-blur-md rounded-xl bg-[#000000] bg-opacity-40"></div>
           </div>
         </div>
@@ -56,6 +56,18 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  props: {
+    title: {
+      type: String,
+      default: () => 'Popular TV',
+      required: true
+    },
+    popularTv: {
+      type: Array,
+      required: true,
+      default: () => []
+    }
   },
   data() {
     return {
