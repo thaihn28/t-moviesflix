@@ -7,14 +7,14 @@
 <script>
 import PosterDetail from "@/components/Detail/PosterDetail";
 import {scrollToTop} from "@/utils/app_utils";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "MovieDetail",
   components: {
     PosterDetail
   },
-  async fetch ({ store, params }) {
+  async asyncData ({ store, params }) {
     await store.dispatch('movie/fetchingMovieDetail', params.slug)
   },
   data(){
@@ -32,7 +32,7 @@ export default {
   },
   created() {
     scrollToTop()
-  }
+  },
 }
 </script>
 

@@ -26,6 +26,7 @@ export const actions = {
   async fetchingMovieDetail({commit}, slug) {
     try {
       const res = await this.$axios.$get(`${resource}/${slug}`)
+      console.log(res, '===adt')
       commit('SET_MOVIE', res)
     }
     catch (e) {

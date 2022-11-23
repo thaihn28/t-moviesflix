@@ -3,7 +3,7 @@
     <div class="grid grid-cols-4 gap-10 container">
       <div class="col-span-3 col-start-1 flex flex-col  flex-grow text-white">
         <div class="relative flex w-full h-[560px] flex-shrink-0">
-          <iframe :src="movie.episodes[0].linkEmbed"
+          <iframe :src="movie?.episodes[0]?.linkEmbed || ''"
                   class="relative w-full h-full top-0 left-0" frameborder="0" allowfullscreen=""></iframe>
         </div>
         <div class="flex flex-col flex-shrink-0 mt-5 gap-3">
@@ -57,9 +57,6 @@ export default {
     iconStar,
     iconCalendar,
   },
-  async fetch ({ store, params }) {
-    await store.dispatch('movie/fetchingMovieDetail', params.slug)
-  },
   data(){
     return{
       loading: false
@@ -72,9 +69,6 @@ export default {
     movie(){
       return this.getMovieDetail
     },
-    ratedScore(){
-      return randomRatedScore(5, 9)
-    }
   },
   created() {
     scrollToTop()

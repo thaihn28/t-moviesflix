@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center">
-    <div v-if="loggedIn" class="leading-normal">
+    <div v-if="loggedIn" class="flex">
       <a-popover trigger="click" placement="bottomRight">
         <span class="inline-flex items-center cursor-pointer gap-4">
           <a-avatar src="https://joeschmoe.io/api/v1/random"/>

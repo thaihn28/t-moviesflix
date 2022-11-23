@@ -34,7 +34,7 @@ import PopularTV from "@/components/PopularTV";
 import UpcomingMovie from "@/components/UpcomingMovie";
 import Slider from "@/components/SliderHeader/Slider";
 import {scrollToTop} from "@/utils/app_utils";
-import { mapGetters  } from 'vuex'
+import {mapGetters} from 'vuex'
 import iconClose from "assets/images/icons/iconClose";
 
 export default {
@@ -50,28 +50,35 @@ export default {
   data() {
     return {
       isShowTrailer: false,
-      movie: {}
+      movie: {},
     }
   },
   computed: {
     ...mapGetters(
-      { getAllMovies: 'movie/getAllMovies' },
+      {
+        getAllMovies: 'movie/getAllMovies'
+      },
     ),
-    movies(){
+    movies() {
       return this.getAllMovies
     },
+  },
+  watch: {
+    params(val){
+
+    }
   },
   created() {
     scrollToTop()
   },
   methods: {
-    hideMovieTrailer(){
+    hideMovieTrailer() {
       this.isShowTrailer = false
     },
-    showMovieTrailer(data){
-      if(data)
+    showMovieTrailer(data) {
+      if (data)
         this.isShowTrailer = true
-        this.movie = data
+      this.movie = data
     }
   }
 }
@@ -85,7 +92,7 @@ export default {
 .trailer {
   @apply relative left-2/4 top-52 -translate-x-2/4 md:w-[1080px] w-auto;
 
-  &__title{
+  &__title {
     @apply text-3xl font-bold;
     margin-bottom: 16px;
   }
