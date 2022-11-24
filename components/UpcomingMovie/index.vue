@@ -8,7 +8,7 @@
             <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
               <img class="w-full h-full rounded-xl object-cover object-center" :src="item.thumbURL" alt="">
               <div class="card-info">
-                <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.id)">
+                <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.slug)">
                   <span class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-eye" viewBox="0 0 16 16">
@@ -77,12 +77,6 @@ export default {
           clickable: true
         },
       },
-      // slides: Array.from({length: 10}, (_, i) => {
-      //   return {
-      //     title: `Slide ${i}`,
-      //     image: "https://www.themoviedb.org/t/p/original/bGkLsmAjfgZTFv0WZGwqwbmYZvF.jpg"
-      //   }
-      // }),
       isPremium: false
     }
   },
@@ -100,7 +94,10 @@ export default {
         console.log("===Call api")
       }
       return isEndSlider
-    }
+    },
+    async redirectToDetail(slug) {
+      await this.$router.push(`/movie/detail/${slug}`)
+    },
   }
 
 }

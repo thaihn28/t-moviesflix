@@ -79,13 +79,6 @@ export default {
           clickable: true
         },
       },
-      slides: Array.from({length: 10}, (_, i) => {
-        return {
-          id: i,
-          title: `Slide ${i}`,
-          image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
-        }
-      }),
       isPremium: false,
       loading: false
     }
@@ -102,16 +95,11 @@ export default {
         /*TODO: when isEnd => call API */
         console.log("===swiper", this.swiper)
         console.log("===Call api")
-        // this.slides.push({
-        //   id: 1,
-        //   title: `New Slide`,
-        //   image: "https://www.themoviedb.org/t/p/original/6rz125mkB3KqEBNao8fE2v3C1kg.jpg",
-        // })
       }
       return isEndSlider
     },
-    redirectToDetail(slug) {
-      this.$router.push(`/movie/detail/${slug}`)
+    async redirectToDetail(slug) {
+      await this.$router.push(`/movie/detail/${slug}`)
     },
     handleUnlockMovie(){
       this.loading = false

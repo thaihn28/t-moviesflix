@@ -15,8 +15,8 @@
         <p class="mx-4 text-base">
           {{movie.content}}
         </p>
-        <div class="cate" v-for="item in movie.categories" :key="item.id">
-          <span class="cate__item" @click="viewMoviesByCate()">{{item.name}}</span>
+        <div class="cate">
+          <span v-for="item in movie.categories" :key="item.id" class="cate__item" @click="viewMoviesByCate()">{{item.name}}</span>
         </div>
       </div>
     </div>

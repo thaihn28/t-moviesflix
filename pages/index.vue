@@ -21,9 +21,9 @@
     </div>
     <Slider :slide-movies="movies" @watch-trailer="showMovieTrailer"/>
     <div class="m-16">
-      <TopMovie :title="'Hot Movies'" :top-movies="movies" class="mb-4"/>
-      <UpcomingMovie :title="'Upcoming Movies'" :upcoming-movies="movies" class="mb-4"/>
-      <PopularTV :title="'Popular TV'" :popular-tv="movies" class="mb-4"/>
+      <TopMovie :title="'Hot Movies'" :top-movies="hotMovies" class="mb-4"/>
+      <UpcomingMovie :title="'Upcoming Movies'" :upcoming-movies="upcomingMovies" class="mb-4"/>
+      <PopularTV :title="'Actors'" :actors="actors" class="mb-4"/>
     </div>
   </div>
 </template>
@@ -56,17 +56,12 @@ export default {
   computed: {
     ...mapGetters(
       {
-        getAllMovies: 'movie/getAllMovies'
+        movies: 'movie/getMovies',
+        hotMovies: 'movie/getHotMovies',
+        upcomingMovies: 'movie/getUpcomingMovies',
+        actors: 'actor/getAllActors'
       },
     ),
-    movies() {
-      return this.getAllMovies
-    },
-  },
-  watch: {
-    params(val){
-
-    }
   },
   created() {
     scrollToTop()
@@ -78,7 +73,7 @@ export default {
     showMovieTrailer(data) {
       if (data)
         this.isShowTrailer = true
-      this.movie = data
+        this.movie = data
     }
   }
 }
@@ -90,7 +85,7 @@ export default {
 }
 
 .trailer {
-  @apply relative left-2/4 top-52 -translate-x-2/4 md:w-[1080px] w-auto;
+  @apply relative left-2/4 top-48 -translate-x-2/4 md:w-[1080px] w-auto;
 
   &__title {
     @apply text-3xl font-bold;

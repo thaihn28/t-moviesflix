@@ -3,7 +3,7 @@
     <div class="grid grid-cols-4 gap-10 container">
       <div class="col-span-3 col-start-1 flex flex-col  flex-grow text-white">
         <div class="relative flex w-full h-[560px] flex-shrink-0">
-          <iframe :src="movie?.episodes[0]?.linkEmbed || ''"
+          <iframe :src="movie?.episodes[0]?.linkEmbed || 'https://2embed.org/embed/movie?imdb=1'"
                   class="relative w-full h-full top-0 left-0" frameborder="0" allowfullscreen=""></iframe>
         </div>
         <div class="flex flex-col flex-shrink-0 mt-5 gap-3">
@@ -49,7 +49,6 @@
 import iconStar from "assets/images/icons/iconStar";
 import iconCalendar from "assets/images/icons/iconCalendar";
 import {scrollToTop} from "@/utils/app_utils";
-import {mapGetters} from "vuex";
 
 export default {
   name: "WatchingMovie",
@@ -59,19 +58,21 @@ export default {
   },
   data(){
     return{
-      loading: false
+      loading: false,
     }
   },
   computed: {
-    ...mapGetters({
-      getMovieDetail: 'movie/getMovieDetail'
-    }),
     movie(){
-      return this.getMovieDetail
-    },
+      if(process.client)
+        console.log('===vao day')
+        return JSON.parse(localStorage.getItem('movie'))
+    }
   },
   created() {
     scrollToTop()
+  },
+  destroyed() {
+    localStorage.removeItem('movie')
   },
   methods: {
     viewOtherMovie(){

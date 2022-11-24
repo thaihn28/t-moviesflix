@@ -14,7 +14,7 @@ export default {
   components: {
     PosterDetail
   },
-  async asyncData ({ store, params }) {
+  async fetch ({ store, params }) {
     await store.dispatch('movie/fetchingMovieDetail', params.slug)
   },
   data(){
@@ -24,14 +24,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getMovieDetail: 'movie/getMovieDetail'
+      movie: 'movie/getMovieDetail'
     }),
-    movie(){
-      return this.getMovieDetail
-    }
   },
   created() {
     scrollToTop()
+    if(process.client){
+      const movieObj = JSON.stringify(this.movie)
+      localStorage.setItem('movie', movieObj)
+    }
   },
 }
 </script>

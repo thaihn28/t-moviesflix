@@ -14,7 +14,7 @@ export const actions = {
   async fetchingCategories({commit}){
     try {
       const res = await this.$axios.$get(resource)
-      commit('SET_CATEGORIES', res)
+      commit('SET_CATEGORIES', res.content)
     }catch (e) {
       console.error(e.response.data)
     }
