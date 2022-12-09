@@ -43,7 +43,7 @@
           </span>
         </a-form-item>
         <div class="w-full flex gap-x-5 justify-center">
-          <a-button type="primary"
+          <a-button :loading="loading" type="primary"
                     danger
                     class="ant-btn primary-2 mt-2 px-[36px] h-[44px] text-lg font-normal"
                     html-type="submit"
@@ -72,6 +72,7 @@ export default {
   components: {IconPassword, IconUser, IconHidePassword},
   data() {
     return {
+      loading: false,
       form: this.$form.createForm(this, {name: 'form_login'}),
       isShowPass: false
     }
@@ -87,6 +88,7 @@ export default {
       this.form.validateFields(async (err, values) => {
         if (!err) {
           try {
+            this.loading = true
             const payload = {
               username: values.username,
               password: values.password
@@ -103,8 +105,8 @@ export default {
               await this.$store.commit("user/setUser", response.data)
               await this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
               await this.$auth.setUser(response?.data)
-              await this.$auth.$storage.setUniversal('auth_loggedIn', this.$auth.loggedIn)
-              await this.$router.push('/')
+              // await this.$auth.$storage.setUniversal('auth_loggedIn', this.$auth.loggedIn)
+              await this.$router.back()
             }
           } catch (e) {
             this.$notification.error({
@@ -113,6 +115,7 @@ export default {
               duration: 5
             })
           }
+          this.loading = false
         }
       });
     }

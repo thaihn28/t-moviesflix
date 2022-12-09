@@ -71,7 +71,7 @@
           </span>
         </a-form-item>
         <div class="w-full flex justify-center">
-          <a-button type="primary"
+          <a-button :loading="loading" type="primary"
                     html-type="submit"
                     danger
                     class="ant-btn primary-2 mt-2 px-[36px] h-[44px] text-lg font-normal"
@@ -106,6 +106,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       form: this.$form.createForm(this, {name: 'form_signup'}),
       isShowPass: false
     }
@@ -119,6 +120,7 @@ export default {
       this.form.validateFields(async (err, values) => {
         if (!err) {
           try {
+            this.loading = true
             const payload = {
               firstName: values.firstName,
               lastName: values.lastName,
@@ -126,7 +128,7 @@ export default {
               username: values.username,
               password: values.password
             }
-            const response = await this.$axios.post('/auth/sign-up', payload)
+            const response = await this.$axios.post('api/auth/sign-up', payload)
             this.$notification.success({
               message: response.data,
               placement: 'topRight',
@@ -141,6 +143,7 @@ export default {
               duration: 5
             })
           }
+          this.loading = false
         }
       });
     },
