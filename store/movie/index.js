@@ -1,10 +1,14 @@
 const resource = 'api/v1/movies'
+const filterBy = '/filter-by-type?type='
 
 export const state = () => ({
   movies: [],
   hotMovies: [],
   upcomingMovies: [],
-  movie: {}
+  movie: {},
+  similarMovies: [],
+  tvShows: {},
+  moviesByActor: {}
 })
 
 export const mutations = {
@@ -19,14 +23,23 @@ export const mutations = {
   },
   SET_MOVIE(state, movie){
     state.movie = movie
+  },
+  SET_SIMILAR_MOVIES(state, movies){
+    state.similarMovies = movies
+  },
+  SET_TV_SHOWS(state, tvShows){
+    state.tvShows = tvShows
+  },
+  SET_MOVIES_BY_ACTOR(state, movies){
+    state.moviesByActor = movies
   }
 }
 
 export const actions = {
-  async fetchingAllMovies({commit}) {
+  async fetchingAllMovies({commit}, payload) {
     try {
-      const res = await this.$axios.$get(resource)
-      commit('SET_MOVIES', res.content)
+      const res = await this.$axios.$get(resource + `?pageNo=${payload.pageNo}&pageSize=${payload.pageSize}`)
+      commit('SET_MOVIES', res)
     } catch (e) {
       console.error(e.response.data)
     }
@@ -41,7 +54,7 @@ export const actions = {
   },
   async fetchingUpcomingMovies({commit}){
     try {
-      const res = await this.$axios.$get(resource + '/filter-by-type?type=upcoming')
+      const res = await this.$axios.$get(resource + filterBy + 'upcoming')
       commit('SET_UP_COMING_MOVIES', res.content)
     }catch (e) {
       console.error(e.response.data)
@@ -53,6 +66,30 @@ export const actions = {
       commit('SET_MOVIE', res)
     }
     catch (e) {
+      console.error(e.response.data)
+    }
+  },
+  async fetchingSimilarMovies({commit}, payload){
+    try {
+      const res = await this.$axios.$get(`${resource}/filter-by-category?slug=` + payload.slug + `&pageNo=${payload.pageNo}&pageSize=${payload.pageSize}`)
+      commit('SET_SIMILAR_MOVIES', res)
+    }catch (e) {
+      console.error(e.response.data)
+    }
+  },
+  async fetchingTvShows({commit}, payload){
+    try {
+      const res = await this.$axios.$get(resource + filterBy + 'tv' + `&pageNo=${payload.pageNo}&pageSize=${payload.pageSize}`)
+      commit('SET_TV_SHOWS', res)
+    }catch (e) {
+      console.error(e.response.data)
+    }
+  },
+  async fetchingMoviesByActor({commit}, payload){
+    try {
+      const res = await this.$axios.$get(`${resource}/filter-by-actor/${payload.slug}` + `?pageNo=${payload.pageNo}&pageSize=${payload.pageSize}`)
+      commit('SET_MOVIES_BY_ACTOR', res)
+    }catch (e) {
       console.error(e.response.data)
     }
   }
@@ -70,5 +107,14 @@ export const getters = {
   },
   getMovieDetail(state) {
     return state.movie
+  },
+  getSimilarMovies(state){
+    return state.similarMovies
+  },
+  getTvShows(state){
+    return state.tvShows
+  },
+  getMoviesByActor(state){
+    return state.moviesByActor
   }
 }
