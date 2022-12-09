@@ -2,7 +2,7 @@
   <div class="relative w-full">
     <div class="similar-movies">
       <p class="similar-movies__title">Similar Movies</p>
-      <CardSlider :number-slides-per-view="5" :is-loop="true"/>
+      <CardSlider :movies="movies" :number-slides-per-view="5" :is-loop="false"/>
     </div>
   </div>
 </template>
@@ -14,6 +14,13 @@ export default {
   name: "SimilarMovieDetailComponent",
   components: {
     CardSlider
+  },
+  props: {
+    movies: {
+      type: Array,
+      require: true,
+      default: () => []
+    }
   }
 }
 </script>

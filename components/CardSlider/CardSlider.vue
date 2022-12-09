@@ -1,12 +1,12 @@
 <template>
-    <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
-      <swiper-slide v-for="(item,idx) in movies" :key="idx" class="slide">
-        <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
-          <div class="card-wrapper z-50 relative w-full h-full flex flex-col gap-y-2 ">
-            <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
-              <img class="w-full h-full rounded-xl object-cover object-center" :src="item.thumbURL" alt="">
-              <div class="card-info">
-                <a-button v-if="!isPremium" class="flex action-button" @click="redirectToDetail(item.slug)">
+  <swiper class="swiper" :options="swiperOption" ref="mySwiper" @slideChange="changeSwiperIndex">
+    <swiper-slide v-for="(item,idx) in movies" :key="idx" class="slide">
+      <div class="cursor-pointer w-full h-[320px]  md:h-[400px] rounded-xl overflow-hidden p-3 relative select-none">
+        <div class="card-wrapper z-50 relative w-full h-full flex flex-col gap-y-2 ">
+          <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
+            <img class="w-full h-full rounded-xl object-cover object-center" :src="item.thumbURL" alt="">
+            <div class="card-info">
+              <a-button :loading="loading" class="flex action-button" @click="redirectToDetail(item.slug)">
                   <span class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-eye" viewBox="0 0 16 16">
@@ -16,32 +16,32 @@
                       d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                   </svg>
                   </span>
-                  <span class="font-medium">Watch</span>
-                </a-button>
-                <a-button v-else @click="handleUnlockMovie" class="flex action-button">
-                  <span class="mr-[4px] mt-[2px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-lock" viewBox="0 0 16 16">
-                      <path
-                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
-                    </svg>
-                  </span>
-                  <span class="font-medium">Unlock</span>
-                </a-button>
-              </div>
+                <span class="font-medium">Watch</span>
+              </a-button>
+              <!--                <a-button v-else @click="handleUnlockMovie" class="flex action-button">-->
+              <!--                  <span class="mr-[4px] mt-[2px]">-->
+              <!--                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"-->
+              <!--                         class="bi bi-lock" viewBox="0 0 16 16">-->
+              <!--                      <path-->
+              <!--                        d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>-->
+              <!--                    </svg>-->
+              <!--                  </span>-->
+              <!--                  <span class="font-medium">Unlock</span>-->
+              <!--                </a-button>-->
             </div>
-            <span class="card-title max-w-full h-[30px] text-base truncate font-semibold">
-              {{item.name}}
+          </div>
+          <span class="card-title max-w-full h-[30px] text-base truncate font-semibold">
+              {{ item.name }}
             </span>
-          </div>
-          <div class="absolute inset-0 p-3">
-            <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.thumbURL" alt="">
-            <div class="layer absolute inset-0 md:backdrop-blur-md rounded-xl bg-[#000000] bg-opacity-40"></div>
-          </div>
         </div>
-      </swiper-slide>
-      <div class="swiper-pagination" slot="pagination"></div>
-    </swiper>
+        <div class="absolute inset-0 p-3">
+          <img class="w-full h-full object-cover rounded-xl hidden md:block" :src="item.thumbURL" alt="">
+          <div class="layer absolute inset-0 md:backdrop-blur-md rounded-xl bg-[#000000] bg-opacity-40"></div>
+        </div>
+      </div>
+    </swiper-slide>
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
 </template>
 
 <script>
@@ -79,7 +79,6 @@ export default {
           clickable: true
         },
       },
-      isPremium: false,
       loading: false
     }
   },
@@ -98,12 +97,11 @@ export default {
       }
       return isEndSlider
     },
-    async redirectToDetail(slug) {
-      await this.$router.push(`/movie/detail/${slug}`)
-    },
-    handleUnlockMovie(){
+    redirectToDetail(slug) {
+      this.loading = true
+      this.$router.push(`/movie/detail/${slug}`)
       this.loading = false
-    }
+    },
   }
 
 }
@@ -120,6 +118,7 @@ export default {
     width: 250px !important;
   }
 }
+
 ::v-deep .ant-btn > i, .ant-btn > span {
   font-weight: 500;
 }
