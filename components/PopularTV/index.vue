@@ -90,7 +90,7 @@ export default {
       return isEndSlider
     },
     redirectToDetail(slug) {
-      this.$router.push({ path: '/movie/explore/actors', query: { slug: slug } })
+      this.$router.push({ path: '/movie/detail/' + slug })
     }
   },
 }

@@ -10,12 +10,13 @@
 
       <div class="inline-flex justify-end flex-auto" style="margin:8px 56px 0 0">
         <div class="text-xl font-bold text-white flex items-center justify-center md:gap-7 gap-4 z-[60]">
-          <NuxtLink class="transition-all flex items-center" to="/movie/explore/series">Series</NuxtLink>
+          <NuxtLink class="transition-all flex items-center" to="/movie/explore/more">Explore</NuxtLink>
           <NuxtLink class="transition-all flex items-center" to="/movie/explore/tv-shows">TV Shows</NuxtLink>
           <div class="show-genres hover:text-[#DB0000] relative cursor-pointer transition-all flex items-center">
             Genres
             <div class="genres-list hidden transition-all h-auto bg-stone-800 w-72 bg-opacity-70">
-              <NuxtLink v-for="item in categories" :key="item.id" :to="{ path: '/movie/explore/genres', query: { slug: item.slug }}"
+              <NuxtLink v-for="item in categories" :key="item.id"
+                        :to="{ path: '/movie/explore/genres', query: { slug: item.slug }}"
                         class="hover:text-[#DB0000] w-auto text-base font-semibold mx-5 cursor-pointer text-white transition-all">
                 {{ item.name }}
               </NuxtLink>
@@ -25,9 +26,10 @@
           <div class="show-countries relative hover:text-[#DB0000] cursor-pointer transition-all flex items-center">
             Countries
             <div class="countries-list hidden transition-all absolute h-auto bg-stone-800 w-72 bg-opacity-70">
-              <NuxtLink  v-for="item in countries" :key="item.id" :to="{ path: '/movie/explore/countries', query: { slug: item.slug }}"
+              <NuxtLink v-for="item in countries" :key="item.id"
+                        to=""
                         class="hover:text-[#DB0000] w-auto text-base font-semibold mx-5 cursor-pointer text-white transition-all">
-                {{ item.name }}
+                <span @click="notify">{{ item.name }}</span>
               </NuxtLink>
             </div>
           </div>
@@ -129,6 +131,13 @@ export default {
       else if (window.scrollY <= 10)
         headerElement.classList.remove('bg-color-header')
     },
+    notify() {
+      this.$notification.success({
+        message: "Coming soon!",
+        duration: 2,
+        placement: 'topRight'
+      })
+    }
   }
 }
 </script>

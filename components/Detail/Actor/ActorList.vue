@@ -2,7 +2,7 @@
   <div class="relative w-full">
     <p class="actors-title">Actors</p>
     <div class="actors">
-      <div class="actors__item" v-for="item in actorImages" :key="item.id">
+      <div class="actors__item" v-for="item in actorImages" :key="item.id" @click="viewMovieByActor(item.slug)">
         <div class="h-[240px] w-[180px] bg-cover bg-center bg-no-repeat object-center object-cover rounded-lg"
              :style="`background-image: url(${item.avatar})`"></div>
         <p class="actors__item__name">{{ item.name }}</p>
@@ -21,6 +21,11 @@ export default {
       default: () => []
     }
   },
+  methods: {
+    viewMovieByActor(slug){
+      this.$router.push({ path: '/movie/explore/actors', query: { slug: slug } })
+    }
+  }
 }
 </script>
 
