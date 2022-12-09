@@ -1,19 +1,40 @@
 <template>
-  <a-pagination size="small" :total="50" show-size-changer show-quick-jumper
-                :show-total="total => `Total ${total} items`">
+  <a-pagination v-model="paginationProp.pageNo + 1" :defaultCurrent="1"
+                :defaultPageSize="paginationProp.pageSize" size="small" :total="paginationProp.totalElements"
+                show-size-changer show-quick-jumper :pageSizeOptions="['10', '15', '20', '25']"
+                :show-total="total => `Total ${total} items`" @showSizeChange="onShowSizeChange" @change="onChangePage">
   </a-pagination>
 </template>
 
 <script>
 export default {
   name: "PaginationComponent",
+  props: {
+    paginationProp: {
+      type: Object,
+      required: true,
+      default: () => undefined
+    }
+  },
   data(){
     return {
-      pagination: {
-        total: 500,
-        currentPage: 1,
-        pageSize: 20,
+    }
+  },
+  created() {
+  },
+  methods: {
+    onShowSizeChange(currentPage, pageSize){
+      // const currentPagination = {
+      //   pageSize: pageSize
+      // }
+      this.$emit('change-page-size', pageSize)
+    },
+    onChangePage(page, pageSize){
+      const currentPagination = {
+        pageNo: page - 1,
+        pageSize: pageSize
       }
+      this.$emit('change-page', currentPagination)
     }
   }
 }
