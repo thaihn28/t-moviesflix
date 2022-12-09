@@ -9,13 +9,16 @@
           <span class="font-bold text-justify">{{ item.content }}</span>
           <div class="w-full gap-2 flex-row flex-wrap">
             <a-button
+              :loading="loading"
               class="ant-btn primary-2 watch-primary-btn"
               danger
               shape="round"
+              @click="watchNow(item.slug)"
             >
               Watch now
             </a-button>
             <a-button
+              :loading="loading"
               shape="round"
               class="ant-btn outline-2 watch-outline-btn"
               @click="watchMovieTrailer(item)"
@@ -55,7 +58,7 @@ export default {
         spaceBetween: 30,
         centeredSlides: true,
         autoplay: {
-          delay: 10000,
+          delay: 6000,
           disableOnInteraction: false
         },
         loop: false,
@@ -64,19 +67,19 @@ export default {
           clickable: true
         },
       },
-      images: Array.from({length: 2}, (_, i) => {
-        return {
-          index: i,
-          title: `My Hero Academia: World Heroes' Mission`,
-          overview: `A mysterious group called Humarize strongly believes in the Quirk Singularity Doomsday theory which states that when quirks get mixed further in with future generations, that power will bring forth the end of humanity. In order to save everyone, the Pro-Heroes around the world ask UA Academy heroes-in-training to assist them and form a world-class selected hero team. It’s up to the heroes to save the world and the future of heroes in what is the most dangerous crisis to take place yet in My Hero Academia.`,
-          image: 'https://www.themoviedb.org/t/p/original/2RHjd10wqv57xYzZkNK8Sl09Ddt.jpg'
-        }
-      }),
+      loading: false,
     }
   },
   methods: {
     watchMovieTrailer(movie){
+      this.loading = true
       this.$emit('watch-trailer', movie)
+      this.loading = false
+    },
+    watchNow(slug){
+      this.loading = true
+      this.$router.push(`/movie/detail/${slug}`)
+      this.loading = false
     }
   }
 }
