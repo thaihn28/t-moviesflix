@@ -25,12 +25,14 @@ h1, h2, h3, h4, h5, h6 {
   background-color: $black-body;
   color: $white-primary;
 }
+
 .layout-content {
 
   & .container {
     max-width: 100%;
   }
 }
+
 // Header css
 .ant-layout-header {
   &.header {
@@ -48,13 +50,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-title,
+.ant-skeleton.ant-skeleton-active .ant-skeleton-content .ant-skeleton-paragraph > li {
+  background: linear-gradient(90deg, rgba(242, 242, 242, 0.25) 25%, rgba(0, 0, 0, 0.8) 37%, rgba(242, 242, 242, 0.25) 63%);
+  background-size: 400% 100%;
+  animation: ant-skeleton-loading 1.4s ease infinite;
+}
+
 // Custom ant-results
 .ant-result-title,
 .ant-result-subtitle {
   color: $white-primary;
 }
+
 // Custom ant-tooltip
-.ant-tooltip-inner{
+.ant-tooltip-inner {
   background-color: $white-primary;
   color: $black-primary;
 }
@@ -63,10 +73,11 @@ h1, h2, h3, h4, h5, h6 {
 ::v-deep .ant-btn {
   @apply px-[16px] pt-[1px] text-white;
 
-  &.primary-2{
+  &.primary-2 {
     background-color: $red-primary;
     color: $white-primary;
     border: 1px solid transparent;
+
     &:hover,
     &:focus {
       background-color: $red-ternary;
@@ -75,12 +86,12 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  &.outline-2{
+  &.outline-2 {
     background-color: transparent;
     border: 1px solid #FFFFFF;
     box-shadow: unset;
 
-    &:hover{
+    &:hover {
       background-color: $gray-primary;
       color: $white-primary;
       border: none;
@@ -126,13 +137,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 //Custome ant spin
-.ant-spin-dot-item{
+.ant-spin-dot-item {
   background-color: $red-primary;
 }
-.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot{
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-dot {
   top: 100%;
 }
-.ant-spin-container.ant-spin-blur{
+
+.ant-spin-container.ant-spin-blur {
   height: 100vh;
 }
 

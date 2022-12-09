@@ -15,6 +15,10 @@ export default {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
+  loading: {
+    color: 'red',
+    height: '5px'
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -31,6 +35,7 @@ export default {
     { src: '~/plugins/repositories.js', mode: 'client' },
     '@/plugins/swiper',
     '@/plugins/persistedState',
+    '@/plugins/persistedMovieState',
     // '~/plugins/repositories.js',
   ],
 
@@ -83,11 +88,11 @@ export default {
   // },
 
   auth: {
-    cookie: {
-      options: {
-        secure: true
-      }
-    },
+    // cookie: {
+    //   options: {
+    //     secure: true
+    //   }
+    // },
     strategies: {
       local: {
         token: {
