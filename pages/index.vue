@@ -19,7 +19,7 @@
         </iframe>
       </div>
     </div>
-    <Slider :slide-movies="movies" @watch-trailer="showMovieTrailer"/>
+    <Slider :slide-movies="movies.content" @watch-trailer="showMovieTrailer"/>
     <div class="m-16">
       <TopMovie :title="'Hot Movies'" :top-movies="hotMovies" class="mb-4"/>
       <UpcomingMovie :title="'Upcoming Movies'" :upcoming-movies="upcomingMovies" class="mb-4"/>
@@ -38,7 +38,6 @@ import {mapGetters} from 'vuex'
 import iconClose from "assets/images/icons/iconClose";
 
 export default {
-  middleware: 'authenticated',
   name: 'HomePage',
   components: {
     TopMovie,
@@ -72,8 +71,8 @@ export default {
     },
     showMovieTrailer(data) {
       if (data)
-        this.isShowTrailer = true
         this.movie = data
+        this.isShowTrailer = true
     }
   }
 }
