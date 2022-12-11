@@ -106,7 +106,7 @@ export default {
               await this.$auth.strategy.token.set('Bearer ' + response.data.accessToken)
               await this.$auth.setUser(response?.data)
               // await this.$auth.$storage.setUniversal('auth_loggedIn', this.$auth.loggedIn)
-              await this.$router.back()
+              await this.$router.push('/')
             }
           } catch (e) {
             this.$notification.error({

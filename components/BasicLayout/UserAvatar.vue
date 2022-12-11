@@ -59,7 +59,7 @@ export default {
     },
     async logout() {
       // await this.$auth.$storage.removeUniversal('auth_loggedIn')
-      await this.$store.commit('user/removeUser', null)
+      await this.$store.commit('user/removeUser', {})
       await this.$auth.logout()
       await this.$router.push('/login')
     },
