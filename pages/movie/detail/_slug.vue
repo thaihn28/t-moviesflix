@@ -15,7 +15,7 @@ export default {
   components: {
     PosterDetail
   },
-  async fetch({store, params}) {
+  async asyncData({store, params}) {
     await store.dispatch('movie/fetchingMovieDetail', params.slug)
     await store.commit('detail/setMovie', store.getters["movie/getMovieDetail"])
   },
@@ -44,7 +44,11 @@ export default {
           .filter(item => (item.name !== this.movie.name))
         this.similarMovies = similarMovies
       } catch (e) {
-        console.error(e.response.data)
+        this.$notification.error({
+          message: e.response.data,
+          placement: 'topRight',
+          duration: 2
+        })
       }
     }
   }
