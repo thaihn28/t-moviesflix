@@ -1,5 +1,8 @@
 # T-Moviesflix
 
+## Production
+[Click here](http://t-moviesflix.herokuapp.com/) to view my website
+
 ## Build Setup
 
 ```bash
