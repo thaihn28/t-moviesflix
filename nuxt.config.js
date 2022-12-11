@@ -66,26 +66,22 @@ export default {
   ],
 
   axios: {
-    baseURL: process.env.API_BASE_URL || 'https://t-movies-api.herokuapp.com/',
+    baseURL: process.env.API_BASE_URL || 'http://tmoviesdev-env.eba-a32f99nt.ap-southeast-1.elasticbeanstalk.com/',
     retry: { retries: 3 },
     // proxy: true
   },
 
-  // proxy: {
-  //   '/api/': { target: process.env.API_BASE_URL, pathRewrite: {'^/api/': ''} }
-  // },
-  //
-  // publicRuntimeConfig: {
-  //   axios: {
-  //     browserBaseURL: process.env.API_BASE_URL
-  //   }
-  // },
-  //
-  // privateRuntimeConfig: {
-  //   axios: {
-  //     baseURL: process.env.API_BASE_URL
-  //   }
-  // },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL
+    }
+  },
 
   auth: {
     // cookie: {
