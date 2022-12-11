@@ -44,7 +44,7 @@ export default {
   computed: {
     loggedIn() {
       const user = this.$store.getters["user/getUser"]
-      return user
+      return Object.keys(user).length !== 0
     },
     userDisplayName(){
       const username = this.$store.getters["user/getUser"].username
