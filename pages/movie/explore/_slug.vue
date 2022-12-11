@@ -11,10 +11,11 @@
         <span v-if="routeParams.slug !== 'search'" class="text-xl capitalize font-bold text-[#DB0000]">
           "{{ $route.query.slug }}"
         </span>
-        <span v-else class="text-xl font-bold text-[#DB0000]">
+        <span v-else >
+          query <span class="text-xl font-bold text-[#DB0000]">
           "{{ $route.query.keyword }}"
         </span>
-        movies
+        </span>
       </p>
       <div v-else-if="!movies.length" class="text-center text-xl font-bold text-white">
         <span class="mb-4">No results...</span>
