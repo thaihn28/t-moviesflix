@@ -3,8 +3,8 @@
 ## Production
 [Click here](http://t-moviesflix.herokuapp.com/) to view my website
 
-- Acccount: test / test123456
-- Paypal test: tmovie.paypal@gmail.com / tmovie@paypal
+- Acccount: test / test123456 (This account is used to login into the system.)
+- Paypal test: tmovie.paypal@gmail.com / tmovie@paypal (This account is used to pay for premium movies, of courses it's a testing paypal account.)
 
 ## Build Setup
 
