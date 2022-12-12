@@ -138,7 +138,7 @@ export default {
 
           } catch (e) {
             this.$notification.error({
-              message: 'Login failed! Please check your username/password again',
+              message: 'Sign-up failed! Please check your username/password and try again',
               placement: 'topRight',
               duration: 5
             })
