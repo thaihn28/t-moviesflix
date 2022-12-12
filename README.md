@@ -3,6 +3,9 @@
 ## Production
 [Click here](http://t-moviesflix.herokuapp.com/) to view my website
 
+- Acccount: test / test123456
+- Paypal test: tmovie.paypal@gmail.com / tmovie@paypal
+
 ## Build Setup
 
 ```bash
