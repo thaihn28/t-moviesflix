@@ -15,12 +15,13 @@
             </div>
             <div
               class="p-4 border-b border-gray-200 flex gap-3 items-center cursor-pointer hover:bg-[#dbdbdb] hover:rounded-t"
+              @click.prevent="notify"
             >
               <span class="text-black">Profile Management</span>
             </div>
             <div
               class="p-4 flex items-center gap-3 cursor-pointer hover:bg-[#dbdbdb] hover:rounded-b"
-              @click="logout"
+              @click.prevent="logout"
             >
               <icon-logout/>
               <span class="text-black">Sign Out</span>
@@ -63,6 +64,13 @@ export default {
       await this.$auth.logout()
       await this.$router.push('/login')
     },
+    notify() {
+      this.$notification.success({
+        message: "Coming soon!",
+        duration: 2,
+        placement: 'topRight'
+      })
+    }
   },
 }
 

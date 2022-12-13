@@ -92,7 +92,7 @@ export default {
       const isEndSlider = this.swiper.isEnd
       if (isEndSlider && !this.isLoop) {
         /*TODO: when isEnd => call API */
-        console.log("===swiper", this.swiper)
+        // console.log("===swiper", this.swiper)
         console.log("===Call api")
       }
       return isEndSlider

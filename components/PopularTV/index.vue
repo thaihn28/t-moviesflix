@@ -8,7 +8,7 @@
             <div class="card-movie max-w-full h-[250px] md:h-[85%] rounded-xl">
               <img class="w-full h-full rounded-xl object-cover object-center" :src="item.avatar" alt="">
               <div class="card-info">
-                <a-button class="flex action-button" @click="redirectToDetail(item.slug)">
+                <a-button class="flex action-button" @click="viewMoviesByCate(item.slug)">
                   <span class="mr-[4px] mt-[2px]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-eye" viewBox="0 0 16 16">
@@ -84,13 +84,13 @@ export default {
       const isEndSlider = this.swiper.isEnd
       if (isEndSlider) {
         /*TODO: when isEnd => call API */
-        console.log("===swiper", this.swiper)
+        // console.log("===swiper", this.swiper)
         console.log("===Call api")
       }
       return isEndSlider
     },
-    redirectToDetail(slug) {
-      this.$router.push({ path: '/movie/detail/' + slug })
+    viewMoviesByCate(slug) {
+      this.$router.push({ path: '/movie/explore/actors', query: { slug: slug } })
     }
   },
 }
