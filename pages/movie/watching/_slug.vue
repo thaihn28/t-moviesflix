@@ -67,7 +67,7 @@ export default {
     return {
       loading: false,
       movie: {},
-      linkEmbed: 'https://2embed.org/embed/movie?imdb=1'
+      linkEmbed: ''
     }
   },
   computed: {
@@ -86,7 +86,7 @@ export default {
       const stateMovie = this.$store.getters["detail/getMovie"]
       if (stateMovie.slug === this.$route.params.slug) {
         this.movie = stateMovie
-        this.linkEmbed = stateMovie?.episodes[0]?.linkEmbed
+        this.linkEmbed = stateMovie?.episodes[0]?.linkEmbed || 'https://2embed.org/embed/movie?imdb=1'
       } else
         this.$router.push('/error')
     },
