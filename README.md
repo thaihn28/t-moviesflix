@@ -1,6 +1,6 @@
 # T-Moviesflix
 
-## Production
+# Deployment
 [Click here](http://t-moviesflix.herokuapp.com/) to view my website
 
 - Acccount: test / test123456 (This account is used to login into the system.)
